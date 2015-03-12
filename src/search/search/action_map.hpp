@@ -1,4 +1,9 @@
+#include <map>
+#include <functional>
+#include <vector>
+
 #include "node.hpp"
+
 
 #ifndef ACTION_MAP_HPP
 #define ACTION_MAP_HPP
@@ -67,5 +72,25 @@ Node r_child(Node const& parent)
 	return Node(state, path);
 }
 
+
+struct ActionMap : public std::map<unsigned, std::vector<std::function<Node(Node const&)>>>
+{
+	using ActionList = std::vector < std::function<Node(Node const&)> > ;
+
+	ActionMap()
+	{
+		(*this)[0] = ActionList{ r_child, d_child };
+		(*this)[2] = ActionList{ l_child, d_child };
+		(*this)[6] = ActionList{ l_child, r_child };
+		(*this)[8] = ActionList{ u_child, l_child };
+
+		(*this)[1] = ActionList{ l_child, r_child, d_child };
+		(*this)[3] = ActionList{ u_child, r_child, d_child };
+		(*this)[5] = ActionList{ u_child, d_child, d_child };
+		(*this)[7] = ActionList{ u_child, l_child, r_child };
+
+		(*this)[4] = ActionList{ u_child, d_child, l_child, r_child };
+	}
+};
 
 #endif // !ACTION_MAP_HPP
