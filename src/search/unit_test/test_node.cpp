@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "../search/node.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -11,7 +12,9 @@ namespace unit_test
 		
 		TEST_METHOD(ctor)
 		{
-
+			Node node("876543210", "LLUUDDR");
+			Assert::AreEqual(std::string("876543210"), node.state);
+			Assert::AreEqual(std::string("LLUUDDR"), node.path);
 		}
 
 	};
