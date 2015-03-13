@@ -42,7 +42,7 @@ namespace ai
 				}
 			}
 
-			std::set<std::string> const& visitted_set() const
+			std::set<std::string> const& visited_set() const
 			{
 				return visited_set_;
 			}
