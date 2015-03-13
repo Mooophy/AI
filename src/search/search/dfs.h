@@ -1,12 +1,12 @@
+#pragma once
+
 #include <set>
 #include <string>
 #include <deque>
 
-#include "node.hpp"
-#include "action_map.hpp"
+#include "node.h"
+#include "action_map.h"
 
-#ifndef DFS_HPP
-#define DFS_HPP
 
 namespace ai
 {
@@ -15,13 +15,13 @@ namespace ai
 		class DFS
 		{
 		public:
-			DFS(std::string const& source, std::string const& goal): 
-				visited_set_{}, 
-				dq_{}, 
+			DFS(std::string const& source, std::string const& goal) :
+				visited_set_{},
+				dq_{},
 				path_to_goal_{},
 				action_dictionary{}
 			{
-				for (dq_.push_front(Node(source, ""));	!dq_.empty();	/**/)
+				for (dq_.push_front(Node(source, "")); !dq_.empty();	/**/)
 				{
 					auto curr = dq_.front();	dq_.pop_front();
 					if (goal == curr.state)
@@ -60,7 +60,7 @@ namespace ai
 			std::set<std::string> visited_set_;
 			std::deque<Node> dq_;
 			std::string path_to_goal_;
-		
+
 		public:
 			const ActionMap action_dictionary;
 		};
@@ -68,4 +68,3 @@ namespace ai
 }
 
 
-#endif // !DFS_HPP

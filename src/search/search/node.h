@@ -1,8 +1,6 @@
+#pragma once
+
 #include <string>
-
-
-#ifndef NODE_HPP
-#define NODE_HPP
 
 namespace ai
 {
@@ -19,6 +17,3 @@ namespace ai
 		};
 	}
 }
-
-
-#endif // !NODE_HPP

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D2D7EA5A-79C5-4316-B584-9A38C0D35052}</ProjectGuid>
+    <ProjectGuid>{C8C40FBA-F8D5-4CA3-B518-CF78A2A765B8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>unit_test</RootNamespace>
   </PropertyGroup>
@@ -91,11 +91,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test_action_map.cpp" />
+    <ClCompile Include="test_dfs.cpp" />
     <ClCompile Include="test_node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\search\search.vcxproj">
-      <Project>{275de909-79e8-4e78-af5b-e4390c3004b9}</Project>
+      <Project>{274756ef-9647-4c39-82fd-d35bfbca9512}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
