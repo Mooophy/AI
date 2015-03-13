@@ -93,6 +93,7 @@
     <ClCompile Include="test_action_map.cpp" />
     <ClCompile Include="test_dfs.cpp" />
     <ClCompile Include="test_node.cpp" />
+    <ClCompile Include="test_pds.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\search\search.vcxproj">

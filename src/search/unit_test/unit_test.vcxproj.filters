@@ -35,5 +35,8 @@
     <ClCompile Include="test_dfs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_pds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
