@@ -13,8 +13,6 @@ namespace ai
 {
 	namespace search
 	{
-
-
 		unsigned u(unsigned pos)
 		{
 			return pos - 3;
@@ -86,20 +84,24 @@ namespace ai
 
 			ActionMap()
 			{
-				(*this)[0] = ActionList{ r_child, d_child };
-				(*this)[2] = ActionList{ l_child, d_child };
-				(*this)[6] = ActionList{ l_child, r_child };
+				//adress:
+				//	0	1	2
+				//	3	4	5
+				//	6	7	8
+
+				(*this)[0] = ActionList{ d_child, r_child };
+				(*this)[2] = ActionList{ d_child, l_child };
+				(*this)[6] = ActionList{ u_child, r_child };
 				(*this)[8] = ActionList{ u_child, l_child };
 
-				(*this)[1] = ActionList{ l_child, r_child, d_child };
-				(*this)[3] = ActionList{ u_child, r_child, d_child };
-				(*this)[5] = ActionList{ u_child, d_child, d_child };
+				(*this)[1] = ActionList{ d_child, l_child, r_child };
+				(*this)[3] = ActionList{ u_child, d_child, r_child };
+				(*this)[5] = ActionList{ u_child, d_child, l_child };
 				(*this)[7] = ActionList{ u_child, l_child, r_child };
 
 				(*this)[4] = ActionList{ u_child, d_child, l_child, r_child };
 			}
 		};
-
 	}
 }
 #endif // !ACTION_MAP_HPP
