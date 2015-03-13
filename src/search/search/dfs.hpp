@@ -15,27 +15,23 @@ namespace ai
 	{
 		struct DFS
 		{
-			DFS(Node const& source, Node const& goal)
-				: visited_set{}, queue{}, path_to_goal{}, action_dictionary{}
+			DFS(std::string const& source, std::string const& goal)
+				: visited_set{}, dq{}, path_to_goal{}, action_dictionary{}
 			{
-				queue.push_front(source);
-				while (! queue.empty())
+				for (dq.push_front(Node(source, "")); !dq.empty();	/*	*/)
 				{
-					auto curr = queue.front();
-					queue.pop_front();
-					
-					if (is_goal(curr, goal))
+					auto curr = dq.front();	dq.pop_front();
+					if (goal == curr.state)
 					{
 						path_to_goal = curr.path;
 						break;
 					}
 
-					auto pos_of_empty_tile = curr.state.find('0');
-					for (auto make_child : action_dictionary.at(pos_of_empty_tile))
+					for (auto make_child : action_dictionary.at(curr.state.find('0')))
 					{
 						auto child = make_child(curr);
 						if (visited_set.end() != visited_set.find(child.state))
-							queue.push_front(child);
+							dq.push_front(child);
 					}
 
 					visited_set.insert(curr.state);
@@ -43,15 +39,9 @@ namespace ai
 			}
 			
 			std::set<std::string> visited_set;
-			std::deque<Node> queue;
+			std::deque<Node> dq;
 			std::string path_to_goal;
 			const ActionMap action_dictionary;
-
-		private:
-			bool is_goal(Node const& node, Node const& goal) const
-			{
-				return node.state == goal.state;
-			}
 		};
 	}
 }
