@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../search/node.hpp"
+//#include "../search/dfs.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -16,6 +17,5 @@ namespace unit_test
 			Assert::AreEqual(std::string("876543210"), node.state);
 			Assert::AreEqual(std::string("LLUUDDR"), node.path);
 		}
-
 	};
 }

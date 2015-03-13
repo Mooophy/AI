@@ -8,7 +8,6 @@
 #ifndef DFS_HPP
 #define DFS_HPP
 
-
 namespace ai
 {
 	namespace search
@@ -34,7 +33,7 @@ namespace ai
 					for (auto make_child : action_dictionary.at(curr.state.find('0')))
 					{
 						auto child = make_child(curr);
-						if (visited_set_.end() != visited_set_.find(child.state))
+						if (visited_set_.end() == visited_set_.find(child.state))
 							dq_.push_front(child);
 					}
 
