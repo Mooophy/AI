@@ -18,7 +18,6 @@ namespace ai
 			const std::string path;
 		};
 	}
-
 }
 
 
