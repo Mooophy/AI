@@ -4,16 +4,22 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
-
-struct Node
+namespace ai
 {
-	Node(std::string const& s, std::string const& p)
-		: state(s), path(p)
-	{}
+	namespace search
+	{
+		struct Node
+		{
+			Node(std::string const& s, std::string const& p)
+				: state(s), path(p)
+			{}
 
-	const std::string state;
-	const std::string path;
-};
+			const std::string state;
+			const std::string path;
+		};
+	}
+
+}
 
 
 #endif // !NODE_HPP
