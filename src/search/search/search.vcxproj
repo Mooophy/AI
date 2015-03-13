@@ -67,6 +67,7 @@
     <ClInclude Include="action_map.h" />
     <ClInclude Include="dfs.h" />
     <ClInclude Include="node.h" />
+    <ClInclude Include="pds.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action_map.cpp" />

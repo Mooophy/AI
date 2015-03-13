@@ -17,5 +17,14 @@ namespace unit_test
 			Assert::AreEqual(std::string("LLUUDDR"), node.path);
 		}
 
+		TEST_METHOD(depth)
+		{
+			ai::search::Node node("876543210", "");
+			Assert::AreEqual(0u, node.depth());
+
+			ai::search::Node node2("876543210", "LUDLLRR");
+			Assert::AreEqual(7u, node2.depth());
+		}
+
 	};
 }
