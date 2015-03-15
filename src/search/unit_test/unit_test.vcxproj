@@ -91,6 +91,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test_action_map.cpp" />
+    <ClCompile Include="test_best_first_search.cpp" />
     <ClCompile Include="test_dfs.cpp" />
     <ClCompile Include="test_node.cpp" />
     <ClCompile Include="test_pds.cpp" />
