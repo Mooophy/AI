@@ -17,8 +17,8 @@ namespace ai
 				return path.size();
 			}
 
-			const std::string state;
-			const std::string path;
+			std::string state;
+			std::string path;
 		};
 	}
 }

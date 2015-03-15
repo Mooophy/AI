@@ -52,7 +52,7 @@ namespace ai
 
 			BestFirstSearch(std::string const& source, std::string const& goal): 
 				visited_set_{},
-				pq_{},
+				pq_( GreaterThan < HeuristicFunc > (HeuristicFunc()) ),
 				path_to_goal_{},
 				action_dictionary{}
 			{
