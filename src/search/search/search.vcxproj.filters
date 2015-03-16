@@ -33,6 +33,9 @@
     <ClInclude Include="ucs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="priority_queue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action_map.cpp">
