@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../search/priority_queue.hpp"
+#include "../search/node.h"
 #include <vector>
 #include <algorithm>
 
@@ -48,6 +49,27 @@ namespace unit_test
 			ai::container::build_heap(seq.begin(), seq.end(), std::greater<int>());
 			auto expect = { 16, 14, 10, 8, 7, 9, 3, 2, 4, 1 };
 			Assert::IsTrue(std::equal(seq.cbegin(), seq.cend(), expect.begin()));
+		}
+
+		TEST_METHOD(default_ctor)
+		{
+			ai::container::PriorityQueue<int> pq(std::greater < int > {});
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(greater));
+		}
+
+		TEST_METHOD(ctor_with_il)
+		{
+			ai::container::PriorityQueue<int> pq({ 1, 2, 3, 4, 5 }, std::greater<int>());
+		}
+
+		TEST_METHOD(ctor_with_first_last)
+		{
+			std::vector<int> v{ 1, 2, 3, 4, 5 };
+			ai::container::PriorityQueue<int> pq(v.cbegin(), v.cend(), std::greater<int>());
 		}
 	};
 }

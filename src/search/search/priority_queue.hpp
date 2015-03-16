@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <assert.h>
+#include <vector>
 #include <functional>
 
 namespace ai
@@ -72,5 +72,56 @@ namespace ai
 				if (curr == first) return;
 			}
 		}
+
+		template<typename T>
+		class PriorityQueue
+		{
+		public:
+			using ValueType = T;
+			using Vector = std::vector<T>;
+			using SizeType = typename Vector::size_type;
+			using Iterator = typename Vector::iterator;
+			using CompareFunc = std::function<bool(ValueType const&, ValueType const&)>;
+
+			explicit PriorityQueue(CompareFunc && c)
+				: seq_{}, compare_{ std::move(c) }
+			{}
+
+			explicit PriorityQueue(std::initializer_list<ValueType>&& list, CompareFunc&& c ) 
+				: seq_( std::move(list) ), compare_{ std::move(c) }
+			{
+				ai::container::build_heap(seq_.begin(), seq_.end(), compare_);
+			}
+
+			template<typename Iterator>
+			PriorityQueue(Iterator first, Iterator last, CompareFunc&& c) 
+				: seq_( first, last ), compare_{ std::move(c) }
+			{
+				ai::container::build_heap(seq_.begin(), seq_.end(), compare_);
+			}
+
+			Vector const& sequence() const
+			{
+				return seq_;
+			}
+
+			ValueType const& top() const
+			{
+				return seq_.front();
+			}
+
+			SizeType size() const
+			{
+				return seq_.size();
+			}
+
+			bool empty() const
+			{
+				return seq_.empty();
+			}
+		private:
+			Vector seq_;
+			CompareFunc compare_;
+		};
 	}
 }
