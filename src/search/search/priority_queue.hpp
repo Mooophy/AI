@@ -66,8 +66,11 @@ namespace ai
 		inline void build_heap(Iterator first, Iterator last, CompareFunc && compare)
 		{
 			auto size = last - first;
-			for (auto curr = first + size / 2 - 1; curr != first - 1; --curr)
+			for (auto curr = first + size / 2 - 1; /* */; --curr)
+			{
 				ai::container::heapify(first, last, curr, compare);
+				if (curr == first) return;
+			}
 		}
 	}
 }

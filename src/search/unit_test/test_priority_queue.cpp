@@ -42,5 +42,12 @@ namespace unit_test
 			Assert::IsTrue(std::equal(seq.cbegin(), seq.cend(), expect.begin()));
 		}
 
+		TEST_METHOD(build_heap)
+		{
+			std::vector<int> seq{ 4, 1, 3, 2, 16, 9, 10, 14, 8, 7 };
+			ai::container::build_heap(seq.begin(), seq.end(), std::greater<int>());
+			auto expect = { 16, 14, 10, 8, 7, 9, 3, 2, 4, 1 };
+			Assert::IsTrue(std::equal(seq.cbegin(), seq.cend(), expect.begin()));
+		}
 	};
 }
