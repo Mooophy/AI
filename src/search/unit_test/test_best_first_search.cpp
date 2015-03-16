@@ -69,13 +69,13 @@ namespace unit_test
 		}
 
 		//infinity
-		TEST_METHOD(souce_123804765)
-		{
-			using namespace ai::search;
-			BestFirstSearch< ManhattanDistance > best_first_search("123804765", "012345678");
-			std::string expect = "ULDRURDDLULURRDLDRUULL";
-			Assert::AreEqual(expect, best_first_search.path_to_goal());
-			Assert::AreEqual(173u, best_first_search.visited_set().size());
-		}
+		//TEST_METHOD(souce_123804765)
+		//{
+		//	using namespace ai::search;
+		//	BestFirstSearch< ManhattanDistance > best_first_search("123804765", "012345678");
+		//	std::string expect = "ULDRURDDLULURRDLDRUULL";
+		//	Assert::AreEqual(expect, best_first_search.path_to_goal());
+		//	Assert::AreEqual(173u, best_first_search.visited_set().size());
+		//}
 	};
 }

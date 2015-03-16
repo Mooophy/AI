@@ -30,6 +30,9 @@
     <ClInclude Include="best_first_search.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ucs.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action_map.cpp">
