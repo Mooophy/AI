@@ -41,5 +41,8 @@
     <ClCompile Include="test_best_first_search.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_priority_queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

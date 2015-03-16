@@ -28,7 +28,7 @@ namespace ai
 		template<typename Iterator>
 		inline Iterator right_child(Iterator first, Iterator it)
 		{
-			return ai::container::left(first,it) + 1;
+			return ai::container::left_child(first,it) + 1;
 		}
 
 		template<typename Iterator, typename CompareFunc>
@@ -57,7 +57,7 @@ namespace ai
 		}
 
 		template<typename Iterator, typename CompareFunc >
-		inline void build_heap(Iter first, Iter last, CompareFunc && compare)
+		inline void build_heap(Iterator first, Iterator last, CompareFunc && compare)
 		{
 			auto size = last - first;
 			for (auto curr = first + size / 2 - 1; curr != first - 1; --curr)
