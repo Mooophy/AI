@@ -67,6 +67,7 @@
     <ClInclude Include="action_map.h" />
     <ClInclude Include="best_first_search.hpp" />
     <ClInclude Include="dfs.h" />
+    <ClInclude Include="frontier.hpp" />
     <ClInclude Include="node.h" />
     <ClInclude Include="pds.h" />
     <ClInclude Include="priority_queue.hpp" />
