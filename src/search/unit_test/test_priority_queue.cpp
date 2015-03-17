@@ -53,7 +53,10 @@ namespace unit_test
 
 		TEST_METHOD(default_ctor)
 		{
+			//test with int
 			ai::container::PriorityQueue<int> pq(std::greater < int > {});
+
+			//test with node
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
 				return lhs.depth() > rhs.depth();
@@ -63,13 +66,70 @@ namespace unit_test
 
 		TEST_METHOD(ctor_with_il)
 		{
+			//test with int
 			ai::container::PriorityQueue<int> pq({ 1, 2, 3, 4, 5 }, std::greater<int>());
+			
+			//test with node
+			auto nodes = { ai::search::Node("000", ""), ai::search::Node("001", ""), ai::search::Node("010", "") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(nodes), greater);
 		}
 
 		TEST_METHOD(ctor_with_first_last)
 		{
+			//test with int
 			std::vector<int> v{ 1, 2, 3, 4, 5 };
 			ai::container::PriorityQueue<int> pq(v.cbegin(), v.cend(), std::greater<int>());
+
+			//test with node
+			auto nodes = { ai::search::Node("000", ""), ai::search::Node("001", ""), ai::search::Node("010", "") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+		}
+
+		TEST_METHOD(top)
+		{
+			//test with node
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+
+			Assert::AreEqual(std::string("LLUU"), frontier.top().path);
+		}
+
+		TEST_METHOD(size)
+		{
+			//test with node
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+
+			Assert::AreEqual(3u, frontier.size());
+		}
+
+		TEST_METHOD(empty)
+		{
+			//test with node
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+
+			Assert::IsFalse(frontier.empty());
 		}
 	};
 }
