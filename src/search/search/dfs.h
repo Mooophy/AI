@@ -3,6 +3,7 @@
 #include <set>
 #include <string>
 #include <deque>
+#include <algorithm>
 
 #include "node.h"
 #include "action_map.h"
@@ -24,6 +25,8 @@ namespace ai
 				for (dq_.push_front(Node(source, "")); !dq_.empty();	/**/)
 				{
 					auto curr = dq_.front();	dq_.pop_front();
+					visited_set_.insert(curr.state);
+
 					if (goal == curr.state)
 					{
 						path_to_goal_ = curr.path;
@@ -36,8 +39,6 @@ namespace ai
 						if (visited_set_.end() == visited_set_.find(child.state))
 							dq_.push_front(child);
 					}
-
-					visited_set_.insert(curr.state);
 				}
 			}
 

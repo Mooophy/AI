@@ -3,6 +3,7 @@
 #include <set>
 #include <string>
 #include <deque>
+#include <algorithm>
 
 #include "node.h"
 #include "action_map.h"
