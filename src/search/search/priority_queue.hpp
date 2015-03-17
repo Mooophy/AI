@@ -102,7 +102,7 @@ namespace ai
 				ai::container::build_heap(seq_.begin(), seq_.end(), compare_);
 			}
 
-			Vector const& data() const
+			Vector & data()
 			{
 				return seq_;
 			}

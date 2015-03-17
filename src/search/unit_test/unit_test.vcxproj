@@ -97,6 +97,7 @@
     <ClCompile Include="test_node.cpp" />
     <ClCompile Include="test_pds.cpp" />
     <ClCompile Include="test_priority_queue.cpp" />
+    <ClCompile Include="test_ucs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\search\search.vcxproj">
