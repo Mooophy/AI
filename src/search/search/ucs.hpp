@@ -16,31 +16,27 @@ namespace ai
 		class UCS
 		{
 		public:
-			struct CompareNodeForLongerPath
+			struct LongerThan
 			{
 				bool operator() (Node const& lhs, Node const& rhs)
 				{
-					return lhs.path.size() < rhs.path.size();
+					return lhs.depth() > rhs.depth();
 				}
 			};
-			using MinPriorityQueue = std::priority_queue < Node, std::vector < Node >, CompareNodeForLongerPath > ;
-			using HashTable = std::unordered_set < std::string > ;
+			using MinPriorityQueue = std::priority_queue < Node, std::vector < Node >, LongerThan >;
 
 			UCS(std::string const& source, std::string const& goal) :
-				visited_list_{},
-				frontier_{ CompareNodeForLongerPath{} },
+				frontier_{ LongerThan{} },
 				path_to_goal_{},
 				action_dictionary{}
 			{
 				// not implemented yet.
 			}
 
-			HashTable const& visited_list() const { return visited_list_; }
 			MinPriorityQueue const& frontier() const { return frontier_; }
 			std::string const& path_to_goal() const { return path_to_goal_; }
 
 		private:
-			HashTable visited_list_;
 			MinPriorityQueue frontier_;
 			std::string path_to_goal_;
 
