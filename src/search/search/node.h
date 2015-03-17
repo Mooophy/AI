@@ -8,6 +8,8 @@ namespace ai
 	{
 		struct Node
 		{
+			Node() = default;
+
 			Node(std::string const& s, std::string const& p)
 				: state(s), path(p)
 			{}

@@ -131,5 +131,23 @@ namespace unit_test
 
 			Assert::IsFalse(frontier.empty());
 		}
+
+		TEST_METHOD(push)
+		{
+			//test with node
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(greater));
+
+			for (auto && node : nodes)
+				frontier.push(node);
+
+			Assert::AreEqual(std::string("LLUU"), frontier.data()[0].path);
+			Assert::AreEqual(std::string("L"), frontier.data()[1].path);
+			Assert::AreEqual(std::string("LD"), frontier.data()[2].path);
+		}
 	};
 }

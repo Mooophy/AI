@@ -100,7 +100,7 @@ namespace ai
 				ai::container::build_heap(seq_.begin(), seq_.end(), compare_);
 			}
 
-			Vector const& sequence() const
+			Vector const& data() const
 			{
 				return seq_;
 			}
@@ -118,6 +118,18 @@ namespace ai
 			bool empty() const
 			{
 				return seq_.empty();
+			}
+
+			void push(ValueType new_val)
+			{
+				//! find the right place for added
+				seq_.resize(size() + 1);
+				auto curr = seq_.end() - 1;
+				for (; curr > seq_.begin() && compare_(new_val, *parent(seq_.begin(), curr)); curr = parent(seq_.begin(), curr))
+					*curr = *parent(seq_.begin(), curr);
+
+				//! insert
+				*curr = new_val;
 			}
 		private:
 			Vector seq_;
