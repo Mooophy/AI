@@ -13,9 +13,11 @@ namespace ai
 {
 	namespace search
 	{
+		//
+		//	Uniform Cost Search
+		//
 		class UCS
 		{
-		public:
 			struct LongerThan
 			{
 				bool operator() (Node const& lhs, Node const& rhs)
@@ -23,6 +25,7 @@ namespace ai
 					return lhs.depth() > rhs.depth();
 				}
 			};
+		public:
 			using MinPriorityQueue = std::priority_queue < Node, std::vector < Node >, LongerThan >;
 
 			UCS(std::string const& source, std::string const& goal) :
@@ -30,7 +33,19 @@ namespace ai
 				path_to_goal_{},
 				action_dictionary{}
 			{
-				// not implemented yet.
+				for (frontier_.push(Node(source, "")); !frontier_.empty(); /* */)
+				{
+					auto curr = frontier_.top();	frontier_.pop();
+
+					if (goal == curr.state)
+					{
+						path_to_goal_ = curr.state;
+						return;
+					}
+
+					for (auto make_child : action_dictionary.at(curr.state.find('0')))
+						frontier_.push(make_child(curr));
+				}
 			}
 
 			MinPriorityQueue const& frontier() const { return frontier_; }
@@ -42,7 +57,6 @@ namespace ai
 
 		public:
 			const ActionMap action_dictionary;
-
 		};
 	}
 }
