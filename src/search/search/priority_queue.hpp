@@ -9,6 +9,8 @@
 
 #include <vector>
 #include <functional>
+#include <stdexcept>
+#include <algorithm>
 
 namespace ai
 {
@@ -120,7 +122,7 @@ namespace ai
 				return seq_.empty();
 			}
 
-			void push(ValueType new_val)
+			void push(ValueType const& new_val)
 			{
 				//! find the right place for added
 				seq_.resize(size() + 1);
@@ -130,6 +132,16 @@ namespace ai
 
 				//! insert
 				*curr = new_val;
+			}
+
+			void pop()
+			{
+				if (empty())
+					throw std::underflow_error{ "heap underflow." };
+
+				seq_.front() = seq_.back();
+				seq_.resize(seq_.size() - 1);
+				ai::container::heapify(seq_.begin(), seq_.end(), seq_.begin(), compare_);
 			}
 		private:
 			Vector seq_;

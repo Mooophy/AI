@@ -149,5 +149,59 @@ namespace unit_test
 			Assert::AreEqual(std::string("L"), frontier.data()[1].path);
 			Assert::AreEqual(std::string("LD"), frontier.data()[2].path);
 		}
+
+		TEST_METHOD(pop)
+		{
+			//test with node
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+
+			Assert::AreEqual(3u, frontier.size());
+			Assert::AreEqual(std::string("LLUU"), frontier.data()[0].path);
+			
+			frontier.pop();
+			Assert::AreEqual(2u, frontier.size());
+			Assert::AreEqual(std::string("LD"), frontier.data()[0].path);
+
+			frontier.pop();
+			Assert::AreEqual(1u, frontier.size());
+			Assert::AreEqual(std::string("L"), frontier.data()[0].path);
+
+			frontier.pop();
+			Assert::AreEqual(0u, frontier.size());
+			Assert::IsTrue(frontier.empty());
+		}
+
+		TEST_METHOD(contains)
+		{
+			//setup
+			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
+			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
+			{
+				return lhs.depth() > rhs.depth();
+			};
+			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
+
+			//test
+			ai::search::Node node("012345678", "LLUU");
+			auto it = std::find_if(frontier.data().cbegin(), frontier.data().cend(), [=](ai::search::Node const& n)
+			{
+				return n.path == node.path && n.state == node.state;
+			});
+			Assert::IsTrue(it != frontier.data().cend());
+
+			//pop and test again
+			frontier.pop();
+			it = std::find_if(frontier.data().cbegin(), frontier.data().cend(), [=](ai::search::Node const& n)
+			{
+				return n.path == node.path && n.state == node.state;
+			});
+			Assert::IsTrue(it == frontier.data().cend());
+
+		}
 	};
 }
