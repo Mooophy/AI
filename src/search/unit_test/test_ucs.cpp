@@ -18,11 +18,13 @@ namespace unit_test
 			Assert::AreEqual(std::string{ "L" }, ucs.path_to_goal());
 		}
 
+		//14m
 		TEST_METHOD(souce_876543210)
 		{
 			ai::search::UCS ucs("876543210", "012345678");
-			std::string expect = "LLUURRDDLLUURRDDLLUURRDDLLUU";
+			std::string expect = "UULLDDRRUULLDDRRUULLDDRRUULL";
 			Assert::AreEqual(expect, ucs.path_to_goal());
+			Assert::AreEqual(179755u, ucs.expanded_list().size());
 		}
 
 		//7m
@@ -31,7 +33,7 @@ namespace unit_test
 			ai::search::UCS ucs("168342750", "012345678");
 			std::string expect = "LLURURDDLUURDLLDRRUULL";
 			Assert::AreEqual(expect, ucs.path_to_goal());
-			Assert::AreEqual(3783u, ucs.expanded_list().size());
+			Assert::AreEqual(90539u, ucs.expanded_list().size());
 		}
 
 		//2s
@@ -40,7 +42,7 @@ namespace unit_test
 			ai::search::UCS ucs("481302675", "012345678");
 			std::string expect = "ULDDRUURDDLLUU";
 			Assert::AreEqual(expect, ucs.path_to_goal());
-			Assert::AreEqual(90539u, ucs.expanded_list().size());
+			Assert::AreEqual(3783u, ucs.expanded_list().size());
 		}
 
 		//14m
