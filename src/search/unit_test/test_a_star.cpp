@@ -10,7 +10,7 @@ namespace unit_test
 	TEST_CLASS(test_a_star)
 	{
 	public:
-		//1ms
+		//	< 1ms
 		TEST_METHOD(ctor)
 		{
 			ai::search::AStar<ai::search::ManhattanDistance> astar("102345678", "012345678");
@@ -19,12 +19,27 @@ namespace unit_test
 			Assert::AreEqual(std::string("L"), astar.path_to_goal());
 		}
 
-		//45ms
+		// < 1ms
+		TEST_METHOD(ctor_with_misplaced_tiles)
+		{
+			ai::search::AStar<ai::search::MisplacedTiles> astar("102345678", "012345678");
+			Assert::AreEqual(9u, astar.action_dictionary.size());
+			Assert::AreEqual(std::string("L"), astar.path_to_goal());
+		}
+
+		//	45ms
 		TEST_METHOD(source_876543210)
 		{
 			ai::search::AStar<ai::search::ManhattanDistance> astar("876543210", "012345678");
 			Assert::AreEqual(std::string("UDLLUURRDDLLUURRDDLLUURRDDLLUU"), astar.path_to_goal());
 		}
+
+		//	infinity
+		//TEST_METHOD(source_876543210_with_misplacedTiles)
+		//{
+		//	ai::search::AStar<ai::search::MisplacedTiles> astar("876543210", "012345678");
+		//	Assert::AreEqual(std::string("UDLLUURRDDLLUURRDDLLUURRDDLLUU"), astar.path_to_goal());
+		//}
 
 		//infinity
 		//TEST_METHOD(source_168342750)
