@@ -10,13 +10,6 @@ namespace unit_test
 	{
 	public:
 		
-		TEST_METHOD(manhattan_distance)
-		{
-			ai::search::ManhattanDistance h;
-			auto distance = h("724506831", "012345678");
-			Assert::AreEqual(18u, distance);
-		}
-
 		TEST_METHOD(greater_than)
 		{
 			ai::search::ManhattanDistance h;

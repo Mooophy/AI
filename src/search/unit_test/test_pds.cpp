@@ -44,10 +44,13 @@ namespace unit_test
 			Assert::AreEqual(3600u, pds.visited_set().size());
 		}
 
-		//infinity
+		//inifinity
 		//TEST_METHOD(souce_123804765)
 		//{
 		//	ai::search::PDS pds("123804765", "012345678");
+		//	std::string expect = "ULDDRUURDDLLUU";
+		//	Assert::AreEqual(expect, pds.path_to_goal());
+		//	Assert::AreEqual(3600u, pds.visited_set().size());
 		//}
 	};
 }

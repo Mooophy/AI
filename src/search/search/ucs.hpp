@@ -43,8 +43,6 @@ namespace ai
 				{
 					auto curr = frontier_.top();	frontier_.pop();
 
-					//std::cout << "'" <<curr.state << "'," << curr.path << std::endl;
-
 					if (goal == curr.state)
 					{
 						path_to_goal_ = curr.path;
