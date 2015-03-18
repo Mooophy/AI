@@ -59,7 +59,7 @@ namespace ai
 						return;
 					}
 
-					for (auto make_child : action_dictionary.at(curr.state.find('0')))
+					for (auto const& make_child : action_dictionary.at(curr.state.find('0')))
 					{
 						auto child = make_child(curr);
 						q_.push(child);

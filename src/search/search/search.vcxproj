@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action_map.cpp" />
-    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
