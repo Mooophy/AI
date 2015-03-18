@@ -11,10 +11,18 @@ namespace ai
 {
 	namespace search
 	{
+		struct DefaultCostFunc
+		{
+			std::size_t operator()(std::string const& state) const
+			{
+				return state.size();
+			}
+		};
+
 		//
 		//	A* search without Expanded List
 		//
-		template<typename HeuristicFunc, typename CostFunc>
+		template<typename HeuristicFunc, typename CostFunc = DefaultCostFunc>
 		class AStar
 		{
 		public:
@@ -24,9 +32,9 @@ namespace ai
 					: goal(g), h{}, c{}
 				{}
 
-				bool operator(std::string const& lhs, std::string const& rhs) const
+				bool operator()(Node const& lhs, Node const& rhs) const
 				{
-					return h(lhs, goal) + c(lhs, goal) > h(rhs, goal) + c(rhs, goal);
+					return h(lhs.state, goal) + c(lhs.state) > h(rhs.state, goal) + c(rhs.state);
 				}
 
 				const std::string goal;
@@ -37,19 +45,44 @@ namespace ai
 			using Q = std::priority_queue < Node, std::vector<Node>, GreaterThan > ;
 
 			AStar(std::string const& source, std::string const& goal) :
-				q_{GreaterThan},
+				q_{ GreaterThan{} },
 				path_to_goal_{},
 				action_dictionary{}
 			{
+				auto start = Node(source, "");
+				for (q_.push(start); !q_.empty(); /* */)
+				{
+					auto curr = q_.top(); q_.pop();
+					if (curr.state == goal)
+					{
+						path_to_goal_ = curr.path;
+						return;
+					}
 
+					for (auto make_child : action_dictionary.at(curr.state.find('0')))
+					{
+						auto child = make_child(curr);
+						q_.push(child);
+					}
+				}
 			}
+
+			Q const& queue() const
+			{
+				return q_;
+			}
+
+			std::string const& path_to_goal() const
+			{
+				return path_to_goal_;
+			}
+
 		private:
 			Q q_;
 			std::string path_to_goal_;
 
 		public:
 			const ActionMap action_dictionary;
-
 		};
 	}
 }
