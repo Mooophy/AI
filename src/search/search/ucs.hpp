@@ -30,7 +30,6 @@ namespace ai
 			};
 
 		public:
-			//using MinPriorityQueue = std::priority_queue < Node, std::vector < Node >, LongerThan >;
 			using MinPriorityQueue = ai::container::PriorityQueue < Node > ;
 
 			UCS(std::string const& source, std::string const& goal) :

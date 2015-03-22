@@ -11,14 +11,6 @@ namespace ai
 {
 	namespace search
 	{
-		struct DefaultCostFunc
-		{
-			std::size_t operator()(std::string const& state) const
-			{
-				return state.size();
-			}
-		};
-
 		//
 		//	A* search without Expanded List
 		//

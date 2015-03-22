@@ -42,6 +42,9 @@
     <ClInclude Include="a_star.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="a_star_with_strict_expanded_list.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action_map.cpp">

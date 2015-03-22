@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClInclude Include="action_map.h" />
     <ClInclude Include="a_star.hpp" />
+    <ClInclude Include="a_star_with_strict_expanded_list.hpp" />
     <ClInclude Include="heuristic_func.hpp" />
     <ClInclude Include="best_first_search.hpp" />
     <ClInclude Include="dfs.h" />
