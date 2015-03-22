@@ -86,7 +86,12 @@ namespace ai
 			{
 				return path_to_goal_;
 			}
-						
+			
+			std::unordered_set<std::string> const& expanded_list() const
+			{
+				return expanded_list_;
+			}
+
 		private:
 			Q q_;
 			std::string path_to_goal_;

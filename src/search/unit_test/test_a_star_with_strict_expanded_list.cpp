@@ -18,5 +18,33 @@ namespace unit_test
 			Assert::AreEqual(std::string("L"), astar_sel.path_to_goal());
 		}
 
+		//2s
+		TEST_METHOD(souce_481302675)
+		{
+			ai::search::AStarSEL< ai::search::ManhattanDistance> astar_sel("481302675", "012345678");
+			std::string expect = "ULDDRUURDDLLUU";
+			Assert::AreEqual(expect, astar_sel.path_to_goal());
+			Assert::AreEqual(3783u, astar_sel.expanded_list().size());
+		}
+
+		//14m
+		TEST_METHOD(souce_876543210)
+		{
+			// ? actual : URDDLURULLDRURDDLULURDRULLDRDLUURRDLULDDRURDLURDLULURRDDLURULL
+
+			ai::search::AStarSEL< ai::search::ManhattanDistance> astar_sel("876543210", "012345678");
+			std::string expect = "UULLDDRRUULLDDRRUULLDDRRUULL";
+			Assert::AreEqual(expect, astar_sel.path_to_goal());
+			Assert::AreEqual(34u, astar_sel.expanded_list().size());
+		}
+
+		//14m
+		TEST_METHOD(souce_123804765)
+		{
+			ai::search::AStarSEL< ai::search::ManhattanDistance> astar_sel("123804765", "012345678");
+			std::string expect = "";
+			Assert::AreEqual(expect, astar_sel.path_to_goal());
+			Assert::AreEqual(181440u, astar_sel.expanded_list().size());
+		}
 	};
 }
