@@ -36,17 +36,59 @@ namespace ai
 			};
 
 			AStarSEL(std::string const& source, std::string const& goal):
-				frontier_{ LessThan{} },
+				q_{ LessThan{} },
 				path_to_goal_{},
 				expanded_list_{},
 				action_dictionary{}
 			{
+				auto start = Node(source, "");
+				for (q_.push(start); !q_.empty(); /* */)
+				{
+					auto curr = q_.top();	q_.pop();
 
+					if (goal == curr.state)
+					{
+						path_to_goal_ = curr.path;
+						return;
+					}
+
+					if (expanded_list_.end() != expanded_list_.find(curr.state))
+						continue;
+
+					expanded_list_.insert(curr.state);
+
+					LessThan less_than;
+					for (auto make_child : action_dictionary.at(curr.state.find('0')))
+					{
+						auto child = make_child(curr);
+						if (expanded_list_.end() != expanded_list_.find(child.state))
+							continue;
+
+						auto const& b = q_.data().begin();
+						auto const& e = q_.data().end();
+						auto it = std::find_if(b, e, [&](Node & node){return child.state == node.state; });
+						if (it == e)
+							q_.push(child);
+						else if (less_than(*it, child))
+							*it = child;
+					}
+				}
 			}
 
 			using Q = ai::container::PriorityQueue < ai::search::Node >;
+
+			Q const& queue() const
+			{
+				return q_;
+			}
+
+			std::string const& path_to_goal() const
+			{
+				return path_to_goal_;
+			}
+						
 		private:
-			Q frontier_;
+			Q q_;
 			std::string path_to_goal_;
 			std::unordered_set<std::string> expanded_list_;
 
