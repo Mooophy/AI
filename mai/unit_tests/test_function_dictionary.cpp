@@ -6,12 +6,12 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unit_tests
 {
-	TEST_CLASS(test_function_dictionary)
-	{
-	public:
-		
-		TEST_METHOD(function_dictionary_ctor)
-		{
+    TEST_CLASS(test_function_dictionary)
+    {
+    public:
+
+        TEST_METHOD(function_dictionary_ctor)
+        {
             auto dic = mai::search::FunctionDictionary();
 
             Assert::AreEqual(9u, dic.size());
@@ -24,7 +24,7 @@ namespace unit_tests
             Assert::AreEqual(2u, dic.at(6).size());
             Assert::AreEqual(3u, dic.at(7).size());
             Assert::AreEqual(2u, dic.at(8).size());
-		}
+        }
 
         TEST_METHOD(function_dictionary_case1)
         {
@@ -41,5 +41,5 @@ namespace unit_tests
             Assert::AreEqual('L', children[1].path[0]);
         }
 
-	};
+    };
 }
