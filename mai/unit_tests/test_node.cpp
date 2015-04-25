@@ -6,7 +6,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unit_tests
 {
-    TEST_CLASS(node)
+    TEST_CLASS(test_node)
     {
     public:
 
