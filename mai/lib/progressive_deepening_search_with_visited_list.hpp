@@ -30,12 +30,13 @@ namespace mai
                 {
                     visited_.clear();
                     q_.clear();
+
                     for (q_.push_front(Node(source, "")); !q_.empty(); /* */)
                     {
                         auto curr = q_.front();	q_.pop_front();
                         visited_.insert(curr.state);
 
-                        if (goal == curr.state){ final_path_ = curr.path; return; }
+                        if (goal == curr.state){ final_path_ = curr.path; goto Done; }
                         if (curr.path.size() >= max_depth_) continue;
 
                         for (auto make_child : func_dic_.at(curr.state.find('0')))
@@ -48,9 +49,18 @@ namespace mai
                     }
                 }
 
+                Done:
                 auto done = Time::now();
                 running_time_ = std::chrono::duration<float>(done - start).count();
+                //running_time_ = 13.0f;
             }
+
+            std::size_t max_depth() const { return max_depth_; }
+            std::size_t max_q_length() const { return max_q_length_; }
+            std::set<std::string> const& visited() const { return visited_; }
+            std::string const& path() const { return final_path_; }
+            float running_time() const { return running_time_; }
+
         private:
             std::size_t max_depth_, max_q_length_;
             std::set<std::string> visited_;

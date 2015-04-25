@@ -92,6 +92,7 @@
     </ClCompile>
     <ClCompile Include="test_function_dictionary.cpp" />
     <ClCompile Include="test_node.cpp" />
+    <ClCompile Include="test_pds_with_vlist.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
