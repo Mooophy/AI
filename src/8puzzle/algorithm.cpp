@@ -39,7 +39,8 @@ string PDS_Visited_List(string const initialState, string const goalState, int &
 		   i++;
 	   }	
 	}
-	path = "LUULD";
+	//path = "LUULD";
+    path = "LLUURRDDLLUURRDDLLUURRDDLLUU";
 	//
 // END_DUMMY_CODES
 //***********************************************************************************************************
