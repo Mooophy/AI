@@ -14,10 +14,10 @@ namespace ai
 				: state(s), path(p)
 			{}
 
-			std::size_t depth() const
-			{
-				return path.size();
-			}
+			//std::size_t depth() const
+			//{
+			//	return path.size();
+			//}
 
 			std::string state;
 			std::string path;

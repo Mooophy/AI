@@ -8,7 +8,7 @@
 #include <queue>
 #include <iostream>
 
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 #include "priority_queue.hpp"
 
@@ -25,7 +25,7 @@ namespace ai
 			{
 				bool operator() (Node const& lhs, Node const& rhs)
 				{
-					return lhs.depth() < rhs.depth();
+                    return lhs.path.size() < rhs.path.size();
 				}
 			};
 
@@ -64,7 +64,7 @@ namespace ai
 						auto it = std::find_if(b, e, [&](Node & node){return child.state == node.state; });
 						if (it == e)
 							frontier_.push(child);
-						else if (it->depth() > child.depth())
+                        else if (it->path.size() > child.path.size())
 							*it = child;
 					}
 				}

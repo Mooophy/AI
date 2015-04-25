@@ -5,7 +5,7 @@
 
 #include "heuristic_func.hpp"
 #include "priority_queue.hpp"
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 
 namespace ai

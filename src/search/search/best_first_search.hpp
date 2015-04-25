@@ -4,7 +4,7 @@
 #include <queue>
 #include <set>
 
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 #include "heuristic_func.hpp"
 

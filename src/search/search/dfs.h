@@ -5,7 +5,7 @@
 #include <deque>
 #include <algorithm>
 
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 
 

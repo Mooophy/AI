@@ -70,7 +70,7 @@
     <ClInclude Include="heuristic_func.hpp" />
     <ClInclude Include="best_first_search.hpp" />
     <ClInclude Include="dfs.h" />
-    <ClInclude Include="node.h" />
+    <ClInclude Include="node.hpp" />
     <ClInclude Include="pds.h" />
     <ClInclude Include="priority_queue.hpp" />
     <ClInclude Include="ucs.hpp" />

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include "../search/priority_queue.hpp"
-#include "../search/node.h"
+#include "../search/node.hpp"
 #include <vector>
 #include <algorithm>
 
@@ -59,7 +59,7 @@ namespace unit_test
 			//test with node
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(greater));
 		}
@@ -73,7 +73,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("000", ""), ai::search::Node("001", ""), ai::search::Node("010", "") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(nodes), greater);
 		}
@@ -88,7 +88,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("000", ""), ai::search::Node("001", ""), ai::search::Node("010", "") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 		}
@@ -99,7 +99,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 
@@ -112,7 +112,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 
@@ -125,7 +125,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 
@@ -138,7 +138,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(std::move(greater));
 
@@ -156,7 +156,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 
@@ -182,7 +182,7 @@ namespace unit_test
 			auto nodes = { ai::search::Node("012345678", "L"), ai::search::Node("012345678", "LD"), ai::search::Node("012345678", "LLUU") };
 			auto greater = [](ai::search::Node const& lhs, ai::search::Node const& rhs) -> bool
 			{
-				return lhs.depth() > rhs.depth();
+                return lhs.path.size() > rhs.path.size();
 			};
 			ai::container::PriorityQueue<ai::search::Node> frontier(nodes.begin(), nodes.end(), greater);
 

@@ -5,7 +5,7 @@
 #include <deque>
 #include <algorithm>
 
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 
 namespace  ai
@@ -37,7 +37,7 @@ namespace  ai
 							return;
 						}
 
-						if (curr.depth() >= max_depth_)
+                        if (curr.path.size() >= max_depth_)
 							continue;
 						
 						for (auto make_child : action_dictionary.at(curr.state.find('0')))

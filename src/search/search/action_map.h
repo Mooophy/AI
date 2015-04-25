@@ -3,7 +3,7 @@
 #include <map>
 #include <functional>
 #include <vector>
-#include "node.h"
+#include "node.hpp"
 
 
 namespace ai

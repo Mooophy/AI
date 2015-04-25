@@ -3,7 +3,7 @@
 #include <string>
 #include <queue>
 
-#include "node.h"
+#include "node.hpp"
 #include "action_map.h"
 #include "heuristic_func.hpp"
 
