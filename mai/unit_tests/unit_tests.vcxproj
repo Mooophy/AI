@@ -96,6 +96,7 @@
     <ClCompile Include="test_node.cpp" />
     <ClCompile Include="test_pds_with_vlist.cpp" />
     <ClCompile Include="test_priority_queue.cpp" />
+    <ClCompile Include="test_uniform_cost_search.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@ namespace mai
     {
         class FunctionDictionary : public std::map < unsigned, std::vector<std::function<Node(Node const&)>> >
         {
-            void fill_dic()
+            auto fill_dic() -> void
             {
                 auto u = [](unsigned pos){ return pos - 3; };
                 auto d = [](unsigned pos){ return pos + 3; };
