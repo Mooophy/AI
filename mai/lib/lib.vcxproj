@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="best_first_search_with_visited_list.hpp" />
     <ClInclude Include="function_dictionary.hpp" />
     <ClInclude Include="heuristic_func.hpp" />
     <ClInclude Include="node.hpp" />

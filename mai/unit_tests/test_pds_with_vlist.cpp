@@ -27,7 +27,7 @@ namespace unit_tests
             Assert::AreEqual(14409u, pds.visited().size());
             Assert::AreEqual(25u, pds.max_q_length());
             Assert::AreEqual(28u, pds.max_depth());
-            Assert::IsTrue(12.0f < pds.running_time() && 15.0f > pds.running_time());
+            Assert::IsTrue(12.0f < pds.running_time() && 20.0f > pds.running_time());
         }
 
         //5.0s

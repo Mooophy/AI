@@ -17,11 +17,11 @@ namespace mai
             using Time = std::chrono::high_resolution_clock;
         public:
             PDSWithVList(std::string const& source, std::string const& goal) :
-                max_depth_{0}, max_q_length_{0},
+                max_depth_{ 0u }, max_q_length_{ 0u },
                 visited_{},
                 q_{},
                 final_path_{},
-                running_time_{0},
+                running_time_{ 0 },
                 func_dic_{}
             {
                 auto start = Time::now();
@@ -49,7 +49,7 @@ namespace mai
                     }
                 }
 
-                Done:
+            Done:
                 auto done = Time::now();
                 running_time_ = std::chrono::duration<float>(done - start).count();
             }
