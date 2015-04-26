@@ -12,11 +12,11 @@ namespace mai
 {
     namespace search
     {
-        class ProgressiveDeepeningSearchWithVisitedList
+        class PDSWithVList
         {
             using Time = std::chrono::high_resolution_clock;
         public:
-            ProgressiveDeepeningSearchWithVisitedList(std::string const& source, std::string const& goal) :
+            PDSWithVList(std::string const& source, std::string const& goal) :
                 max_depth_{0}, max_q_length_{0},
                 visited_{},
                 q_{},
@@ -52,7 +52,6 @@ namespace mai
                 Done:
                 auto done = Time::now();
                 running_time_ = std::chrono::duration<float>(done - start).count();
-                //running_time_ = 13.0f;
             }
 
             std::size_t max_depth() const { return max_depth_; }
