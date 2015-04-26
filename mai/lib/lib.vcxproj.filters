@@ -24,5 +24,8 @@
     <ClInclude Include="progressive_deepening_search_with_visited_list.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="heuristic_func.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,13 +15,11 @@ using namespace std;
 string PDS_Visited_List(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime, int ultimateMaxDepth)
 {
     auto pds = mai::search::PDSWithVList(initialState, goalState);
-
     numOfStateExpansions = pds.visited().size(); 
     maxQLength = pds.max_q_length(); 
     actualRunningTime = pds.running_time();
     ultimateMaxDepth = pds.max_depth();
     return pds.path();
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

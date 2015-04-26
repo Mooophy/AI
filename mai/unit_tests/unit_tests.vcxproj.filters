@@ -35,5 +35,8 @@
     <ClCompile Include="test_pds_with_vlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_heuristic_func.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
