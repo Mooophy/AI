@@ -7,10 +7,10 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unit_tests
 {
-	TEST_CLASS(test_priority_queue)
-	{
-	public:
-		
+    TEST_CLASS(test_priority_queue)
+    {
+    public:
+
         TEST_METHOD(pq_parent)
         {
             auto seq = { 5, 6, 9, 3, 2, 7 };
@@ -201,5 +201,5 @@ namespace unit_tests
 
         }
 
-	};
+    };
 }
