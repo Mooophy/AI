@@ -6,16 +6,16 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace unit_tests
 {
-	TEST_CLASS(test_heuristic_func)
-	{
-	public:
-		
+    TEST_CLASS(test_heuristic_func)
+    {
+    public:
+
         TEST_METHOD(manhattan_distance)
-		{
+        {
             auto h = mai::search::ManhattanDistance{};
             auto distance = h("724506831", "012345678");
             Assert::AreEqual(18u, distance);
-		}
+        }
 
         TEST_METHOD(misplaced_tiles)
         {
@@ -29,5 +29,5 @@ namespace unit_tests
             Assert::AreEqual(2u, v3);
         }
 
-	};
+    };
 }
