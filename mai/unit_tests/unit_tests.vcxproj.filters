@@ -41,5 +41,8 @@
     <ClCompile Include="test_bestfs_with_vlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_priority_queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

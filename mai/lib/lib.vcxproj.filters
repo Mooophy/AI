@@ -30,5 +30,8 @@
     <ClInclude Include="best_first_search_with_visited_list.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="priority_queue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
