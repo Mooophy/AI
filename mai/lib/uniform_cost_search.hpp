@@ -66,10 +66,10 @@ namespace mai
                 running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
-            std::size_t max_q_length() const { return max_q_length_; }
-            float running_time() const { return running_time_; }
-            std::string const& path() const { return final_path_; }
-            std::unordered_set<std::string> const& expanded() const { return expanded_; }
+            auto max_q_length() const -> std::size_t { return max_q_length_; }
+            auto running_time() const -> float { return running_time_; }
+            auto path() const -> std::string const&{ return final_path_; }
+            auto expanded() const -> std::unordered_set<std::string> const& { return expanded_; }
 
         private:
             std::size_t max_q_length_;

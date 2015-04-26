@@ -16,15 +16,15 @@ namespace mai
 {
     namespace container
     {
-        template<typename Iterator>
-        inline Iterator parent(Iterator first, Iterator it)
+        template<typename Iterator> 
+        auto inline parent(Iterator first, Iterator it) -> Iterator
         {
             return first + (it - first - 1) / 2;
         }
 
         //return left child if within range, return last otherwise
         template<typename Iterator>
-        inline Iterator left_child(Iterator first, Iterator last, Iterator it)
+        auto inline left_child(Iterator first, Iterator last, Iterator it) -> Iterator
         {
             auto size = last - first;
             auto offset = 2 * (it - first) + 1;
@@ -33,14 +33,14 @@ namespace mai
 
         //return right child if within range, return last otherwise
         template<typename Iterator>
-        inline Iterator right_child(Iterator first, Iterator last, Iterator it)
+        auto inline right_child(Iterator first, Iterator last, Iterator it) -> Iterator
         {
             auto left = left_child(first, last, it);
             return left != last ? left + 1 : last;
         }
 
         template<typename Iterator, typename CompareFunc>
-        void heapify(Iterator first, Iterator last, Iterator curr, CompareFunc && compare)
+        auto heapify(Iterator first, Iterator last, Iterator curr, CompareFunc && compare) -> void
         {
             while (true)
             {
@@ -65,7 +65,7 @@ namespace mai
         }
 
         template<typename Iterator, typename CompareFunc >
-        inline void build_heap(Iterator first, Iterator last, CompareFunc && compare)
+        auto inline build_heap(Iterator first, Iterator last, CompareFunc && compare) -> void
         {
             auto size = last - first;
             for (auto curr = first + size / 2 - 1; /* */; --curr)
@@ -102,27 +102,12 @@ namespace mai
                 mai::container::build_heap(seq_.begin(), seq_.end(), compare_);
             }
 
-            Vector & data()
-            {
-                return seq_;
-            }
+            auto data() -> Vector& { return seq_; }
+            auto top() const -> ValueType const&{ return seq_.front(); }
+            auto size() const -> SizeType { return seq_.size(); }
+            auto empty() const -> bool{ return seq_.empty(); }
 
-            ValueType const& top() const
-            {
-                return seq_.front();
-            }
-
-            SizeType size() const
-            {
-                return seq_.size();
-            }
-
-            bool empty() const
-            {
-                return seq_.empty();
-            }
-
-            void push(ValueType const& new_val)
+            auto push(ValueType const& new_val) -> void
             {
                 //! find the right place for added
                 seq_.resize(size() + 1);
@@ -134,7 +119,7 @@ namespace mai
                 *curr = new_val;
             }
 
-            void pop()
+            auto pop() -> void
             {
                 if (empty())
                     throw std::underflow_error{ "heap underflow." };
@@ -143,6 +128,7 @@ namespace mai
                 seq_.resize(seq_.size() - 1);
                 mai::container::heapify(seq_.begin(), seq_.end(), seq_.begin(), compare_);
             }
+
         private:
             Vector seq_;
             CompareFunc compare_;

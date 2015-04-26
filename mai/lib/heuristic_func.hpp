@@ -7,7 +7,7 @@ namespace mai
     {
         struct ManhattanDistance
         {
-            std::size_t operator()(std::string const& curr, std::string const& goal) const
+            auto operator()(std::string const& curr, std::string const& goal) const -> std::size_t
             {
                 std::size_t ret = 0;
                 for (int index = 0; index != goal.size(); ++index)
@@ -25,7 +25,7 @@ namespace mai
 
         struct MisplacedTiles
         {
-            std::size_t operator()(std::string const& curr, std::string const& goal) const
+            auto operator()(std::string const& curr, std::string const& goal) const -> std::size_t
             {
                 std::size_t count = 0;
                 for (int i = 0; i != goal.size(); ++i)
@@ -36,7 +36,7 @@ namespace mai
 
         struct DefaultCostFunc
         {
-            std::size_t operator()(std::string const& state) const
+            auto operator()(std::string const& state) const -> std::size_t
             {
                 return state.size();
             }

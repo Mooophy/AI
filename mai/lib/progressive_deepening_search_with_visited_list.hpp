@@ -54,11 +54,11 @@ namespace mai
                 running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
-            std::size_t max_depth() const { return max_depth_; }
-            std::size_t max_q_length() const { return max_q_length_; }
-            std::set<std::string> const& visited() const { return visited_; }
-            std::string const& path() const { return final_path_; }
-            float running_time() const { return running_time_; }
+            auto max_depth() const -> std::size_t { return max_depth_; }
+            auto max_q_length() const -> std::size_t { return max_q_length_; }
+            auto visited() const -> std::set<std::string> const& { return visited_; }
+            auto path() const -> std::string const& { return final_path_; }
+            auto running_time() const -> float { return running_time_; }
 
         private:
             std::size_t max_depth_, max_q_length_;
