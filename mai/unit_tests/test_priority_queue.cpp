@@ -198,7 +198,6 @@ namespace unit_tests
                 return n.path == node.path && n.state == node.state;
             });
             Assert::IsTrue(it == frontier.data().cend());
-
         }
 
     };
