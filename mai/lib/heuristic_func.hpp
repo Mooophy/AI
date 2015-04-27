@@ -12,9 +12,7 @@ namespace mai
                 std::size_t ret = 0;
                 for (int index = 0; index != goal.size(); ++index)
                 {
-                    if ('0' == curr[index])
-                        continue;
-
+                    if ('0' == curr[index]) continue;
                     auto digit = curr[index] - '0';
                     ret += abs(index / 3 - digit / 3) + abs(index % 3 - digit % 3);// distance(row) plus distance(col)
                 }
