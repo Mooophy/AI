@@ -73,6 +73,7 @@
     <ClInclude Include="node.hpp" />
     <ClInclude Include="priority_queue.hpp" />
     <ClInclude Include="progressive_deepening_search_with_visited_list.hpp" />
+    <ClInclude Include="time_recorder.hpp" />
     <ClInclude Include="uniform_cost_search.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
