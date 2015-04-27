@@ -36,5 +36,8 @@
     <ClInclude Include="uniform_cost_search.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="a_star.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

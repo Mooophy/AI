@@ -33,13 +33,5 @@ namespace mai
                 return count;
             }
         };
-
-        struct DefaultCostFunc
-        {
-            auto operator()(std::string const& state) const -> std::size_t
-            {
-                return state.size();
-            }
-        };
     }
 }
