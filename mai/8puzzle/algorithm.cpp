@@ -2,6 +2,7 @@
 #include "algorithm.h"
 #include "../lib/progressive_deepening_search_with_visited_list.hpp"
 #include "../lib/best_first_search_with_visited_list.hpp"
+#include "../lib/uniform_cost_search.hpp"
 using namespace std;
 
 
@@ -39,39 +40,9 @@ string bestFirstSearch_Visited_List(string const initialState, string const goal
 // Search Algorithm:  Uniform Cost Search using the Strict ExpandedList
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
-string uniformCost_Exp_List(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime){
-    string path;
-    clock_t startTime;
-
-    startTime = clock();
-
-    //***********************************************************************************************************
-    // BEGIN_DUMMY_CODES - YOU SHOULD DELETE THIS BLOCK OF CODES AND REPLACE WITH YOUR ALGORITHM IMPLEMENTATION 
-    //
-    // run search algorithm here
-    //
-    //
-    numOfStateExpansions = 777; //this is for testing only
-    maxQLength = 333; //this is for testing only
-
-
-    long i, j;
-
-    j = 0;
-    while (j < 99999){
-        j++;
-        i = 0;
-        while (i < 99){
-            i++;
-        }
-    }
-    path = "LUULD";
-    //
-    // END_DUMMY_CODES
-    //***********************************************************************************************************
-    actualRunningTime = ((float)(clock() - startTime) / CLOCKS_PER_SEC);
-
-    return path;
+string uniformCost_Exp_List(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime)
+{
+    
 }
 
 
