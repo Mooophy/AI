@@ -91,6 +91,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test_a_star.cpp" />
+    <ClCompile Include="test_a_star_with_strict_expanded_list.cpp" />
     <ClCompile Include="test_bestfs_with_vlist.cpp" />
     <ClCompile Include="test_function_dictionary.cpp" />
     <ClCompile Include="test_heuristic_func.cpp" />

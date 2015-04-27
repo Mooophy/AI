@@ -50,5 +50,8 @@
     <ClCompile Include="test_a_star.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_a_star_with_strict_expanded_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
