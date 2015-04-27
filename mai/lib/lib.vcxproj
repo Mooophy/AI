@@ -65,7 +65,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="a_star.hpp" />
+    <ClInclude Include="a_star_with_strict_expanded_list.hpp" />
     <ClInclude Include="best_first_search_with_visited_list.hpp" />
+    <ClInclude Include="default_cost_func.hpp" />
     <ClInclude Include="function_dictionary.hpp" />
     <ClInclude Include="heuristic_func.hpp" />
     <ClInclude Include="node.hpp" />

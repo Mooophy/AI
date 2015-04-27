@@ -5,20 +5,13 @@
 #include <chrono>
 #include "node.hpp"
 #include "heuristic_func.hpp"
+#include "default_cost_func.hpp"
 #include "function_dictionary.hpp"
 
 namespace mai
 {
     namespace search
     {
-        struct DefaultCostFunc
-        {
-            auto operator()(mai::search::Node const& node) const -> std::size_t
-            {
-                return node.path.size();
-            }
-        };
-
         //
         //	A* search without Expanded List
         //

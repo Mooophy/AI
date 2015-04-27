@@ -39,5 +39,11 @@
     <ClInclude Include="a_star.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="a_star_with_strict_expanded_list.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="default_cost_func.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
