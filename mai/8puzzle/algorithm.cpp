@@ -3,6 +3,7 @@
 #include "../lib/progressive_deepening_search_with_visited_list.hpp"
 #include "../lib/best_first_search_with_visited_list.hpp"
 #include "../lib/uniform_cost_search.hpp"
+#include "../lib/a_star.hpp"
 using namespace std;
 
 
@@ -56,39 +57,24 @@ string uniformCost_Exp_List(string const initialState, string const goalState, i
 // Search Algorithm:  A* without the ExpandedList
 //
 ////////////////////////////////////////////////////////////////////////////////////////////
-string aStar(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime, heuristicFunction heuristic){
-    string path;
-    clock_t startTime;
-
-    startTime = clock();
-
-    //***********************************************************************************************************
-    // BEGIN_DUMMY_CODES - YOU SHOULD DELETE THIS BLOCK OF CODES AND REPLACE WITH YOUR ALGORITHM IMPLEMENTATION 
-    //
-    // run search algorithm here
-    //
-    //
-    numOfStateExpansions = 777; //this is for testing only
-    maxQLength = 333; //this is for testing only
-
-
-    long i, j;
-
-    j = 0;
-    while (j < 99999){
-        j++;
-        i = 0;
-        while (i < 99){
-            i++;
-        }
+string aStar(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime, heuristicFunction heuristic)
+{
+    if (heuristic == manhattanDistance)
+    {
+        auto astar = mai::search::AStar < mai::search::ManhattanDistance > { initialState, goalState } ;
+        numOfStateExpansions = astar.num_of_expansions();
+        maxQLength = astar.max_q_length();
+        actualRunningTime = astar.running_time();
+        return astar.path();
     }
-    path = "LUULD";
-    //
-    // END_DUMMY_CODES
-    //***********************************************************************************************************
-    actualRunningTime = ((float)(clock() - startTime) / CLOCKS_PER_SEC);
-
-    return path;
+    else
+    {
+        auto astar = mai::search::AStar < mai::search::MisplacedTiles > { initialState, goalState };
+        numOfStateExpansions = astar.num_of_expansions();
+        maxQLength = astar.max_q_length();
+        actualRunningTime = astar.running_time();
+        return astar.path();
+    }
 }
 
 
