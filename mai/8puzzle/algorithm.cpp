@@ -43,6 +43,10 @@ string bestFirstSearch_Visited_List(string const initialState, string const goal
 string uniformCost_Exp_List(string const initialState, string const goalState, int &numOfStateExpansions, int& maxQLength, float &actualRunningTime)
 {
     auto ucs = mai::search::UniformCostSearch{ initialState, goalState };
+    numOfStateExpansions = ucs.expanded().size();
+    maxQLength = ucs.max_q_length();
+    actualRunningTime = ucs.running_time();
+    return ucs.path();
 }
 
 
