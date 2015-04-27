@@ -28,8 +28,7 @@ namespace mai
             auto operator()(std::string const& curr, std::string const& goal) const -> std::size_t
             {
                 std::size_t count = 0;
-                for (int i = 0; i != goal.size(); ++i)
-                    if (curr[i] != goal[i]) ++count;
+                for (int i = 0; i != goal.size(); ++i) if (curr[i] != goal[i]) ++count;
                 return count;
             }
         };
