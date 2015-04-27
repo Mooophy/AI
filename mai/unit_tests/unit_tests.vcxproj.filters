@@ -47,5 +47,8 @@
     <ClCompile Include="test_uniform_cost_search.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test_a_star.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
