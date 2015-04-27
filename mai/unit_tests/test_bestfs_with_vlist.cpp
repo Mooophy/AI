@@ -10,13 +10,13 @@ namespace unit_tests
     {
     public:
 
+        //<0.001s
         TEST_METHOD(bestfs_ctor)
         {
             auto bestfs = mai::search::BestFSWithVList < mai::search::ManhattanDistance > {"876543210", "012345678"};
             Assert::AreEqual(std::string("UULLDDRRUULLDDRRUULLDDRRUULL"), bestfs.path());
             Assert::AreEqual(35u, bestfs.visited().size());
             Assert::AreEqual(19u, bestfs.max_q_length());
-            Assert::IsTrue(0.001f < bestfs.running_time() && 1.0f > bestfs.running_time());
         }
 
     };

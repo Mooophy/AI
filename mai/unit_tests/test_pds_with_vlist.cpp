@@ -17,7 +17,7 @@ namespace unit_tests
             Assert::AreEqual(3u, pds.visited().size());
         }
 
-        //12.5s
+        //0.25s
         TEST_METHOD(pds_876543210)
         {
             auto pds = mai::search::PDSWithVList("876543210", "012345678");
@@ -27,10 +27,9 @@ namespace unit_tests
             Assert::AreEqual(14409u, pds.visited().size());
             Assert::AreEqual(25u, pds.max_q_length());
             Assert::AreEqual(28u, pds.max_depth());
-            Assert::IsTrue(12.0f < pds.running_time() && 20.0f > pds.running_time());
         }
 
-        //5.0s
+        //0.112s
         TEST_METHOD(pds_168342750)
         {
             auto pds = mai::search::PDSWithVList("168342750", "012345678");
@@ -40,10 +39,9 @@ namespace unit_tests
             Assert::AreEqual(11053u, pds.visited().size());
             Assert::AreEqual(22u, pds.max_q_length());
             Assert::AreEqual(24u, pds.max_depth());
-            Assert::IsTrue(4.0f < pds.running_time() && 7.0f > pds.running_time());
         }
 
-        //0.6s
+        //0.009s
         TEST_METHOD(pds_481302675)
         {
             auto pds = mai::search::PDSWithVList("481302675", "012345678");
@@ -53,7 +51,6 @@ namespace unit_tests
             Assert::AreEqual(3600u, pds.visited().size());
             Assert::AreEqual(15u, pds.max_q_length());
             Assert::AreEqual(15u, pds.max_depth());
-            Assert::IsTrue(0.2f < pds.running_time() && 1.5f > pds.running_time());
         }
 
         //infinity
@@ -69,7 +66,7 @@ namespace unit_tests
             //Assert::IsTrue(0.2f < pds.running_time() && 1.5f > pds.running_time());
         }
 
-        //0.03s
+        //<0.001s
         TEST_METHOD(pds_042158367)
         {
             auto pds = mai::search::PDSWithVList("042158367", "012345678");
@@ -79,7 +76,6 @@ namespace unit_tests
             Assert::AreEqual(231u, pds.visited().size());
             Assert::AreEqual(8u, pds.max_q_length());
             Assert::AreEqual(8u, pds.max_depth());
-            Assert::IsTrue(0.01f < pds.running_time() && 0.1f > pds.running_time());
         }
 
     };
