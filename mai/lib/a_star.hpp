@@ -50,7 +50,7 @@ namespace mai
                     auto curr = q_.top(); q_.pop();
                     if (curr.state == goal){ final_path_ = curr.path; goto Done; }
                     for (auto make_child : func_dic_.at(curr.state.find('0'))) q_.push(make_child(curr));
-                    if (q_.size() > max_q_length_) max_q_length_ = q_.size();
+                    max_q_length_ = std::max(max_q_length_, q_.size());
                 }
 
             Done:

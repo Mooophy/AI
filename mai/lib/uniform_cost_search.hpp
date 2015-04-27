@@ -41,7 +41,7 @@ namespace mai
             {
                 auto start = Time::now();
 
-                for (q_.push(Node(source, "")); !q_.empty(); /* */)
+                for (q_.push(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                 {
                     auto curr = q_.top();	q_.pop();
                     if (goal == curr.state){ final_path_ = curr.path; goto Done; }
@@ -57,8 +57,6 @@ namespace mai
                         if (it == q_.data().end()) q_.push(child);
                         else if (it->path.size() > child.path.size()) *it = child;
                     }
-
-                    if (q_.size() > max_q_length_) max_q_length_ = q_.size();
                 }
 
             Done:

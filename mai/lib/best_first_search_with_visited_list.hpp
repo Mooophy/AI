@@ -37,7 +37,7 @@ namespace mai
             {
                 auto start = Time::now();
 
-                for (pq_.push(Node(source, "")); !pq_.empty();	/* */)
+                for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
                 {
                     auto curr = pq_.top();	pq_.pop();
                     visited_.insert(curr.state);
@@ -49,8 +49,6 @@ namespace mai
                         auto child = make_child(curr);
                         if (visited_.end() == visited_.find(child.state))   pq_.push(child);
                     }
-
-                    if (pq_.size() > max_q_length_) max_q_length_ = pq_.size();
                 }
 
             Done:

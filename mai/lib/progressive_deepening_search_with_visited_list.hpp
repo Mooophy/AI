@@ -31,7 +31,7 @@ namespace mai
                     visited_.clear();
                     q_.clear();
 
-                    for (q_.push_front(Node(source, "")); !q_.empty(); /* */)
+                    for (q_.push_front(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                     {
                         auto curr = q_.front();	q_.pop_front();
                         visited_.insert(curr.state);
@@ -44,8 +44,6 @@ namespace mai
                             auto child = make_child(curr);
                             if (visited_.end() == visited_.find(child.state)) q_.push_front(child);
                         }
-
-                        if (q_.size() > max_q_length_) max_q_length_ = q_.size();
                     }
                 }
 
