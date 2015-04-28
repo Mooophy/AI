@@ -1,4 +1,4 @@
- * node.hpp
+ * `node.hpp`
 ```cpp
 Node
 { state, path }
