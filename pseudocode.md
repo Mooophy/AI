@@ -1,19 +1,23 @@
  * `node.hpp`
-```cpp
-let struct Node = { state, path }
+```f#
+let Node be: 
+    { state, path } 
+as a struct
 ```
  * `default_cost_func.hpp`
-```cpp
-let functor DefaultCostFunc (node) = node.path.size() 
+```f#
+let DefaultCostFunc (node) be: 
+    node.path.size() 
+as a functor
 ```
  * `priority_queue.hpp`
-```cpp
- Using pseudocodes from "Introduction to Algorithms 3rd edition" aka C.L.R.S.
+```f#
+ Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.
 ```
  * `time_record.hpp`
-```cpp
+```f#
 //a timer implemented with RAII style
-TimeRecord
+let TimeRecord be:
 {
     let constructor(reference) be:
         start timer
@@ -21,33 +25,37 @@ TimeRecord
     let destructor() be:
         stop timer and write time duration to outside by reference 
 }
+as a class
+
 ```
  * `heuristic_func.hpp`
-```cpp
-let functor ManhattanDistance (curr, goal) be :
+```f#
+let ManhattanDistance (curr, goal) be :
     ret = 0
     for i = 0 to length(goal) - 1
         if ('0' != curr[i])
         digit = curr[i] - '0'
         ret += abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
     return ret
+as a functor
   
-let functor MisplacedTiles (curr, goal) be :
+let MisplacedTiles (curr, goal) be :
     count = 0
     for i = 0 to length(goal) - 1
         if (curr[i] != goal[i]) 
         count = count + 1
     return count
+as a functor
 ```
  * `function_dictionary.hpp`
-```cpp
+```f#
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
-let class FunctionDictionary be:
+let FunctionDictionary be:
 {
     let constructor() be:
         fill_dictionary()
     
-    let method fill_dictionary() be:
+    let fill_dictionary() be:
         let lambda u(position) = position - 3
         let lambda d(position) = position + 3
         let lambda l(position) = position - 1
@@ -74,18 +82,19 @@ let class FunctionDictionary be:
         this[5] = LambdaList{ up, dw, lt };
         this[7] = LambdaList{ up, lt, rt };
         this[4] = LambdaList{ up, dw, lt, rt };
+    as a method
 }
+as a class
 ```
  * `progressive_deepening_search_with_visited_list.hpp`
-```cpp
-
+```f#
 let class PDSWithVList be:
 {
     let constructor(source, goal) be:
         record time
         search(source, goal)
  
-    let function search(source, goal) be:
+    let search(source, goal) be:
         max_depth = 0
         while true
             reset q and visited_list
@@ -100,22 +109,24 @@ let class PDSWithVList be:
                     child = make_child(curr)
                     if visited_list doesn't contain state(child)
                         q.push(child)
+    as a method
 }
 ```
  * `best_first_search_with_visited_list.hpp`
 ```cpp
-let class BestFSWithVList be:
+let BestFSWithVList be:
 {
     //this functor is going to be passed to priority queue for comparison
-    let functor Greater(lhs, rhs) be:
+    let Greater(lhs, rhs) be:
         define h as an object of HeuristicFunc
         return h(lhs to goal) > h(rhs to goal)
+    as a functor 
     
     let constructor(source, goal) be:
         record time
         search(source, goal)
     
-    let method search be:
+    let search be:
         q.push(Node(source))
         while q is not empty
             curr = q.pop()
@@ -127,5 +138,7 @@ let class BestFSWithVList be:
                 child = make_child(curr)
                 if visited_list doesn't contain state(child) 
                     q.push(child)
+    as a method
 }
+as a class
 ```
