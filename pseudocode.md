@@ -31,17 +31,17 @@ as class
 let ManhattanDistance (curr, goal) be :
     ret = 0
     for i = 0 to length(goal) - 1
-        if ('0' != curr[i])
-        digit = curr[i] - '0'
-        ret += abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
+        if  '0' != curr[i]
+            digit = curr[i] - '0'
+            ret = ret + abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
     return ret
 as functor
   
 let MisplacedTiles (curr, goal) be :
     count = 0
     for i = 0 to length(goal) - 1
-        if (curr[i] != goal[i]) 
-            count = count + 1
+        if  curr[i] != goal[i] 
+            increment(count)
     return count
 as functor
 ```
@@ -162,8 +162,7 @@ let UniformCostSearch be:
                 for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
                     child = make_child(curr)
                     if expanded_list doesn't contain state(child)
-                        find it as iterator in q, such that:
-                            state(child) == state(node)
+                        find it as iterator in q, such that: state(child) == state(node)
                         if it doesn't exist
                             q.push(child)
                         else if it has lower cost than child has
@@ -195,4 +194,37 @@ as class
             for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
                 q.push(make_child(curr))
             max_q_length = max(max_q_length, size(q))
+ ```
+  * `a_star_with_strict_expanded_list.hpp`
+ ```f#
+ let AStarSEL be:
+    let Less(lhs, rhs) be:
+        let h be an object of HeuristicFunc
+        let c be an object of CostFunc
+        return h(state(lhs), goal) + c(lhs) < h(state(lhs), goal) + c(rhs)
+    as functor
+    
+    let AStarSEL(source,goal) be:
+        record time
+        search(source, goal)
+    as constructor
+    
+    let search(source, goal) be:
+        let less = Less(goal)
+        q.push(Node(source))
+        while q is not empty 
+            curr = pop(q)
+            if state(curr) == goal
+                final_path = path(curr), return
+            if expanded_list doesn't contain state(curr)
+                expanded_list.insert(state(curr))
+                for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+                    child = make_child(curr)
+                    if expanded_list doesn't contain state(child)
+                        find iter as iterator in q, such that: state(child) == state(dereference(iter))
+                        if iter doesn't exist
+                            q.push(child)
+                        else if less(child, dereference(iter))
+                            swap(child, dereference(iter))
+            max_q_length = max(max_q_length, size(q))    
  ```
