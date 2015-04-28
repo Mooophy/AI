@@ -7,7 +7,7 @@ as struct
  * `default_cost_func.hpp`
 ```f#
 let DefaultCostFunc (node) be: 
-    return node.path.size() 
+    return size(path(node))
 as functor
 ```
  * `priority_queue.hpp`
@@ -52,8 +52,9 @@ as functor
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
 let FunctionDictionary be:
 {
-    let constructor() be:
+    let FunctionDictionary() be:
         fill_dictionary()
+    as constructor
     
     let fill_dictionary() be:
         let u(position) = position - 3 as lambda
@@ -91,9 +92,10 @@ as class
 ```f#
 let PDSWithVList be:
 {
-    let constructor(source, goal) be:
+    let PDSWithVList(source, goal) be:
         record time
         search(source, goal)
+    as constructor
  
     let search(source, goal) be:
         max_depth = 0
