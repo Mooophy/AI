@@ -1,4 +1,4 @@
- * Node.hpp
+ * node.hpp
 ```cpp
 Node
 {
@@ -26,5 +26,15 @@ TimeRecord
     stop timer
     write time duration to outside by reference 
 }
+```
+ * heuristic_func.hpp
+```cpp
+ManhattanDistance (curr, goal)
+  ret = 0
+  for i = 0 to length(goal) - 1
+    if ('0' != curr[i])
+      digit = curr[i] - '0'
+      ret += abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
+  return ret
 ```
  
