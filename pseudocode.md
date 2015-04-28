@@ -103,5 +103,8 @@ PDSWithVList
       if visited_list doesn't contain state(child)
        q.push(child)
 }
+```
+ * `best_first_search_with_visited_list.hpp`
+```cpp
 
 ```
