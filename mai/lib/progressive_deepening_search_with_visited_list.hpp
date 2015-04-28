@@ -16,13 +16,8 @@ namespace mai
         class PDSWithVList
         {
         public:
-            PDSWithVList(std::string const& source, std::string const& goal) :
-                max_depth_{ 0u }, max_q_length_{ 0u },
-                visited_{},
-                q_{},
-                final_path_{},
-                running_time_{ 0 },
-                func_dic_{}
+            PDSWithVList(std::string const& source, std::string const& goal) 
+                : max_depth_{ 0 }, max_q_length_{ 0 }, visited_{}, q_{}, final_path_{}, running_time_{ 0 }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (max_depth_ = 0; /* true */; ++max_depth_)

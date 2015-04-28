@@ -122,7 +122,7 @@ namespace mai
             auto pop() -> void
             {
                 if (empty())
-                    throw std::underflow_error{ "heap underflow." };
+                    throw std::underflow_error{ "underflow." };
 
                 seq_.front() = seq_.back();
                 seq_.resize(seq_.size() - 1);

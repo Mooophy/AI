@@ -32,12 +32,8 @@ namespace mai
 
             using Q = mai::container::PriorityQueue < Node > ;
         public:
-            AStarSEL(std::string const& source, std::string const& goal) :
-                max_q_length_{ 0u },
-                expanded_{},
-                q_{ Less{ goal } },
-                final_path_{},
-                func_dic_{}
+            AStarSEL(std::string const& source, std::string const& goal) 
+                : max_q_length_{ 0u }, expanded_{}, q_{ Less{ goal } }, final_path_{}, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 auto less = Less{ goal };

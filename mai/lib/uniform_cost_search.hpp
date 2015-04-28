@@ -31,12 +31,7 @@ namespace mai
             using MinPriorityQueue = mai::container::PriorityQueue < Node > ;
 
             UniformCostSearch(std::string const& source, std::string const& goal) :
-                max_q_length_{ 0 },
-                q_{ Shorter{} },
-                final_path_{},
-                expanded_{},
-                running_time_{ 0.0f },
-                func_dic_{}
+                max_q_length_{ 0 }, q_{ Shorter{} }, final_path_{}, expanded_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (q_.push(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))

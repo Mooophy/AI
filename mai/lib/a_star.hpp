@@ -21,7 +21,7 @@ namespace mai
         {
             struct Greater
             {
-                explicit Greater(std::string const& g): goal(g), h{}, c{} {}
+                explicit Greater(std::string const& g) : goal(g), h{}, c{} {}
                 auto operator()(Node const& lhs, Node const& rhs) const -> bool
                 {
                     return h(lhs.state, goal) + c(lhs) > h(rhs.state, goal) + c(rhs);
@@ -34,13 +34,8 @@ namespace mai
 
             using Q = std::priority_queue < Node, std::vector<Node>, Greater >;
         public:
-            AStar(std::string const& source, std::string const& goal) :
-                expansions_{ 0u },
-                max_q_length_{ 0u },
-                q_{ Greater{ goal } },
-                final_path_{},
-                running_time_{ 0.0f },
-                func_dic_{}
+            AStar(std::string const& source, std::string const& goal)
+                : expansions_{ 0 }, max_q_length_{ 0 }, q_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (q_.push(Node{ source, "" }); !q_.empty(); ++expansions_)

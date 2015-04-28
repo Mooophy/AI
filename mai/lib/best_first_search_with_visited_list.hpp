@@ -27,13 +27,8 @@ namespace mai
 
             using MinPriorityQueue = std::priority_queue < Node, std::vector<Node>, Greater > ;
         public:
-            BestFSWithVList(std::string const& source, std::string const& goal) :
-                max_q_length_{ 0u },
-                visited_{},
-                pq_{ Greater{ goal } },
-                final_path_{},
-                running_time_{ 0.0f },
-                func_dic_{}
+            BestFSWithVList(std::string const& source, std::string const& goal) 
+                : max_q_length_{ 0 }, visited_{}, pq_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
