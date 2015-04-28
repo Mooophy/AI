@@ -172,3 +172,27 @@ let UniformCostSearch be:
     as method
 as class
 ```
+ * `a_star.hpp`
+ ```f#
+ let AStar be:
+    let Greater(lhs, rhs) be:
+        let h be an object of HeuristicFunc
+        let c be an object of CostFunc
+        return h(state(lhs), goal) + c(lhs) > h(state(lhs), goal) + c(rhs)
+    as functor
+    
+    let AStar(source,goal) be:
+        record time
+        search(source, goal)
+    as constructor
+    
+    let search(source, goal) be:
+        q.push(Node(source))
+        while q is not empty 
+            curr = pop(q)
+            if state(curr) == goal
+                final_path = path(curr),return
+            for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+                q.push(make_child(curr))
+            max_q_length = max(max_q_length, size(q))
+ ```
