@@ -19,15 +19,12 @@ as functor
 ```f#
 //a timer implemented with RAII style
 let TimeRecord be:
-{
     let constructor(reference) be:
         start timer
   
     let destructor() be:
         stop timer and write time duration to outside by reference 
-}
 as class
-
 ```
  * `heuristic_func.hpp`
 ```f#
