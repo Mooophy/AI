@@ -20,6 +20,25 @@ namespace mai
                 : max_depth_{ 0 }, max_q_length_{ 0 }, visited_{}, q_{}, final_path_{}, running_time_{ 0 }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
+                search(source, goal);
+            }
+
+            auto max_depth() const -> std::size_t { return max_depth_; }
+            auto max_q_length() const -> std::size_t { return max_q_length_; }
+            auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
+            auto path() const -> std::string const& { return final_path_; }
+            auto running_time() const -> float { return running_time_; }
+
+        private:
+            std::size_t max_depth_, max_q_length_;
+            std::unordered_set<std::string> visited_;
+            std::deque < mai::search::Node > q_;
+            std::string final_path_;
+            float running_time_;
+            const mai::search::FunctionDictionary func_dic_;
+
+            auto search(std::string const& source, std::string const& goal) -> void
+            {
                 for (max_depth_ = 0; /* true */; ++max_depth_)
                 {
                     visited_.clear();
@@ -41,20 +60,6 @@ namespace mai
                     }
                 }
             }
-
-            auto max_depth() const -> std::size_t { return max_depth_; }
-            auto max_q_length() const -> std::size_t { return max_q_length_; }
-            auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
-            auto path() const -> std::string const& { return final_path_; }
-            auto running_time() const -> float { return running_time_; }
-
-        private:
-            std::size_t max_depth_, max_q_length_;
-            std::unordered_set<std::string> visited_;
-            std::deque < mai::search::Node > q_;
-            std::string final_path_;
-            float running_time_;
-            const mai::search::FunctionDictionary func_dic_;
         };
     }
 }

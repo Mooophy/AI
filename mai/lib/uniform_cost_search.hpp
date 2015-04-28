@@ -34,6 +34,24 @@ namespace mai
                 max_q_length_{ 0 }, q_{ Shorter{} }, final_path_{}, expanded_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
+                search(source, goal);
+            }
+
+            auto max_q_length() const -> std::size_t { return max_q_length_; }
+            auto running_time() const -> float { return running_time_; }
+            auto path() const -> std::string const&{ return final_path_; }
+            auto expanded() const -> std::unordered_set<std::string> const& { return expanded_; }
+
+        private:
+            std::size_t max_q_length_;
+            MinPriorityQueue q_;
+            std::string final_path_;
+            std::unordered_set<std::string> expanded_;
+            float running_time_;
+            const mai::search::FunctionDictionary func_dic_;
+
+            auto search(std::string const& source, std::string const& goal) -> void
+            {
                 for (q_.push(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                 {
                     auto curr = q_.top();	q_.pop();
@@ -52,19 +70,6 @@ namespace mai
                     }
                 }
             }
-
-            auto max_q_length() const -> std::size_t { return max_q_length_; }
-            auto running_time() const -> float { return running_time_; }
-            auto path() const -> std::string const&{ return final_path_; }
-            auto expanded() const -> std::unordered_set<std::string> const& { return expanded_; }
-
-        private:
-            std::size_t max_q_length_;
-            MinPriorityQueue q_;
-            std::string final_path_;
-            std::unordered_set<std::string> expanded_;
-            float running_time_;
-            const mai::search::FunctionDictionary func_dic_;
         };
     }
 }

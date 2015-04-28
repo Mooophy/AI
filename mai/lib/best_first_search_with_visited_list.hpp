@@ -31,18 +31,7 @@ namespace mai
                 : max_q_length_{ 0 }, visited_{}, pq_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
-                for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
-                {
-                    auto curr = pq_.top();	pq_.pop();
-                    visited_.insert(curr.state);
-                    if (goal == curr.state){ final_path_ = curr.path; return; }
-
-                    for (auto make_child : func_dic_.at(curr.state.find('0')))
-                    {
-                        auto child = make_child(curr);
-                        if (visited_.end() == visited_.find(child.state))   pq_.push(child);
-                    }
-                }
+                search(source, goal);
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
@@ -57,6 +46,22 @@ namespace mai
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
+
+            auto search(std::string const& source, std::string const& goal) -> void
+            {
+                for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
+                {
+                    auto curr = pq_.top();	pq_.pop();
+                    visited_.insert(curr.state);
+                    if (goal == curr.state){ final_path_ = curr.path; return; }
+
+                    for (auto make_child : func_dic_.at(curr.state.find('0')))
+                    {
+                        auto child = make_child(curr);
+                        if (visited_.end() == visited_.find(child.state))   pq_.push(child);
+                    }
+                }
+            }
         };
     }
 }
