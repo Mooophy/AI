@@ -7,7 +7,7 @@ as a struct
  * `default_cost_func.hpp`
 ```f#
 let DefaultCostFunc (node) be: 
-    node.path.size() 
+    return node.path.size() 
 as a functor
 ```
  * `priority_queue.hpp`
@@ -43,7 +43,7 @@ let MisplacedTiles (curr, goal) be :
     count = 0
     for i = 0 to length(goal) - 1
         if (curr[i] != goal[i]) 
-        count = count + 1
+            count = count + 1
     return count
 as a functor
 ```
@@ -56,21 +56,22 @@ let FunctionDictionary be:
         fill_dictionary()
     
     let fill_dictionary() be:
-        let lambda u(position) = position - 3
-        let lambda d(position) = position + 3
-        let lambda l(position) = position - 1
-        let lambda r(position) = position + 1
+        let u(position) = position - 3 as a lambda
+        let d(position) = position + 3 as a lambda 
+        let l(position) = position - 1 as a lambda 
+        let r(position) = position + 1 as a lambda
     
-        let lambda make_child(parent, move_lambda, direction) be:
+        let make_child(parent, move_lambda, direction) be:
             pos = state(parent).find('0')
             stt = state(parent)
             swap(stt[pos], stt[move_lambda(pos)])
             return Node(stt, path(parent) + direction)
+        as a lambda
     
-        let lambda up(parent) = make_child(parent, u, 'U')
-        let lambda dw(parent) = make_child(parent, d, 'D')
-        let lambda lt(parent) = make_child(parent, l, 'L')
-        let lambda rt(parent) = make_child(parent, r, 'R')
+        let up(parent) = make_child(parent, u, 'U') as a lambda
+        let dw(parent) = make_child(parent, d, 'D') as a lambda
+        let lt(parent) = make_child(parent, l, 'L') as a lambda
+        let rt(parent) = make_child(parent, r, 'R') as a lambda
     
         //fill possible lambda into dictionary
         this[0] = LambdaList{ dw, rt }
@@ -105,10 +106,10 @@ let class PDSWithVList be:
                 if goal == state(curr)
                     final_path = path(curr), return
                 if length(path(curr)) < max_depth
-                for lamda : make_child in function_dictionary.at(state(curr).find('0'))
-                    child = make_child(curr)
-                    if visited_list doesn't contain state(child)
-                        q.push(child)
+                    for lamda : make_child in function_dictionary.at(state(curr).find('0'))
+                        child = make_child(curr)
+                        if visited_list doesn't contain state(child)
+                            q.push(child)
     as a method
 }
 ```
@@ -126,7 +127,7 @@ let BestFSWithVList be:
         record time
         search(source, goal)
     
-    let search be:
+    let search(source, goal) be:
         q.push(Node(source))
         while q is not empty
             curr = q.pop()
