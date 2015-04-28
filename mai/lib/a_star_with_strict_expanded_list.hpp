@@ -36,24 +36,7 @@ namespace mai
                 : max_q_length_{ 0u }, expanded_{}, q_{ Less{ goal } }, final_path_{}, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
-                auto less = Less{ goal };
-                for (q_.push(Node{ source, "" }); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
-                {
-                    auto curr = q_.top();	q_.pop();
-                    if (goal == curr.state){ final_path_ = curr.path; return; }
-                    if (expanded_.end() != expanded_.find(curr.state)) continue;
-                    expanded_.insert(curr.state);
-
-                    for (auto make_child : func_dic_.at(curr.state.find('0')))
-                    {
-                        auto child = make_child(curr);
-                        if (expanded_.end() != expanded_.find(child.state)) continue;
-                        auto it = std::find_if(q_.data().begin(), q_.data().end(), [&](Node const& node){ return child.state == node.state; });
-
-                        if (it == q_.data().end()) q_.push(child);
-                        else if ( less(child, *it) ) *it = child;
-                    }
-                }
+                search(source, goal);
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
@@ -67,6 +50,28 @@ namespace mai
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
+
+            auto search(std::string const& source, std::string const& goal) -> void
+            {
+                auto less = Less{ goal };
+                for (q_.push(Node{ source, "" }); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
+                {
+                    auto curr = q_.top();	q_.pop();
+                    if (goal == curr.state){ final_path_ = curr.path; break; }
+                    if (expanded_.end() != expanded_.find(curr.state)) continue;
+                    expanded_.insert(curr.state);
+
+                    for (auto make_child : func_dic_.at(curr.state.find('0')))
+                    {
+                        auto child = make_child(curr);
+                        if (expanded_.end() != expanded_.find(child.state)) continue;
+                        auto it = std::find_if(q_.data().begin(), q_.data().end(), [&](Node const& node){ return child.state == node.state; });
+
+                        if (it == q_.data().end()) q_.push(child);
+                        else if (less(child, *it)) *it = child;
+                    }
+                }
+            }
         };
     }
 }
