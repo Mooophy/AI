@@ -45,7 +45,7 @@
     <ClInclude Include="default_cost_func.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="time_recorder.hpp">
+    <ClInclude Include="time_record.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

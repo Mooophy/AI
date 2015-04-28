@@ -5,6 +5,7 @@
 #include <queue>
 #include <iostream>
 #include <chrono>
+#include "time_record.hpp"
 #include "node.hpp"
 #include "function_dictionary.hpp"
 #include "priority_queue.hpp"
@@ -26,8 +27,6 @@ namespace mai
                 }
             };
 
-            using Time = std::chrono::high_resolution_clock;
-
         public:
             using MinPriorityQueue = mai::container::PriorityQueue < Node > ;
 
@@ -39,12 +38,11 @@ namespace mai
                 running_time_{ 0.0f },
                 func_dic_{}
             {
-                auto start = Time::now();
-
+                auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (q_.push(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                 {
                     auto curr = q_.top();	q_.pop();
-                    if (goal == curr.state){ final_path_ = curr.path; goto Done; }
+                    if (goal == curr.state){ final_path_ = curr.path; return; }
                     if (expanded_.end() != expanded_.find(curr.state)) continue;
 
                     expanded_.insert(curr.state);
@@ -58,10 +56,6 @@ namespace mai
                         else if (it->path.size() > child.path.size()) *it = child;
                     }
                 }
-
-            Done:
-                auto done = Time::now();
-                running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }

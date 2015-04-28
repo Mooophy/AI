@@ -5,17 +5,17 @@ namespace mai
 {
     namespace utility
     {
-        class TimeRecorder
+        class TimeRecord
         {
         public:
             using Time = std::chrono::high_resolution_clock;
             using TimePoint = std::chrono::high_resolution_clock::time_point;
 
-            explicit TimeRecorder(float& dura) :
+            explicit TimeRecord(float& dura) :
                 duration_{ dura }, start_{ Time::now() }, done_{}
             { }
 
-            ~TimeRecorder()
+            ~TimeRecord()
             {
                 duration_ = std::chrono::duration<float>((done_ = Time::now()) - start_).count();
             }

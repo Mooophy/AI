@@ -5,6 +5,7 @@
 #include <deque>
 #include <algorithm>
 #include <chrono>
+#include "time_record.hpp"
 #include "node.hpp"
 #include "function_dictionary.hpp"
 
@@ -14,7 +15,6 @@ namespace mai
     {
         class PDSWithVList
         {
-            using Time = std::chrono::high_resolution_clock;
         public:
             PDSWithVList(std::string const& source, std::string const& goal) :
                 max_depth_{ 0u }, max_q_length_{ 0u },
@@ -24,19 +24,18 @@ namespace mai
                 running_time_{ 0 },
                 func_dic_{}
             {
-                auto start = Time::now();
-
+                auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (max_depth_ = 0; /* true */; ++max_depth_)
                 {
                     visited_.clear();
                     q_.clear();
-
+                    auto timing = mai::utility::TimeRecord{ running_time_ };
                     for (q_.push_front(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                     {
                         auto curr = q_.front();	q_.pop_front();
                         visited_.insert(curr.state);
 
-                        if (goal == curr.state){ final_path_ = curr.path; goto Done; }
+                        if (goal == curr.state){ final_path_ = curr.path; return; }
                         if (curr.path.size() >= max_depth_) continue;
 
                         for (auto make_child : func_dic_.at(curr.state.find('0')))
@@ -46,10 +45,6 @@ namespace mai
                         }
                     }
                 }
-
-            Done:
-                auto done = Time::now();
-                running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
             auto max_depth() const -> std::size_t { return max_depth_; }

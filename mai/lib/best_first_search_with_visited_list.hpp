@@ -4,6 +4,7 @@
 #include <queue>
 #include <set>
 #include <chrono>
+#include "time_record.hpp"
 #include "node.hpp"
 #include "heuristic_func.hpp"
 #include "function_dictionary.hpp"
@@ -25,7 +26,6 @@ namespace mai
             };
 
             using MinPriorityQueue = std::priority_queue < Node, std::vector<Node>, Greater > ;
-            using Time = std::chrono::high_resolution_clock;
         public:
             BestFSWithVList(std::string const& source, std::string const& goal) :
                 max_q_length_{ 0u },
@@ -35,14 +35,12 @@ namespace mai
                 running_time_{ 0.0f },
                 func_dic_{}
             {
-                auto start = Time::now();
-
+                auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
                 {
                     auto curr = pq_.top();	pq_.pop();
                     visited_.insert(curr.state);
-
-                    if (goal == curr.state){ final_path_ = curr.path; goto Done; }
+                    if (goal == curr.state){ final_path_ = curr.path; return; }
 
                     for (auto make_child : func_dic_.at(curr.state.find('0')))
                     {
@@ -50,10 +48,6 @@ namespace mai
                         if (visited_.end() == visited_.find(child.state))   pq_.push(child);
                     }
                 }
-
-            Done:
-                auto done = Time::now();
-                running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }

@@ -3,6 +3,7 @@
 #include <string>
 #include <queue>
 #include <chrono>
+#include "time_record.hpp"
 #include "node.hpp"
 #include "heuristic_func.hpp"
 #include "default_cost_func.hpp"
@@ -32,8 +33,6 @@ namespace mai
             };
 
             using Q = std::priority_queue < Node, std::vector<Node>, Greater >;
-            using Time = std::chrono::high_resolution_clock;
-
         public:
             AStar(std::string const& source, std::string const& goal) :
                 expansions_{ 0u },
@@ -43,19 +42,14 @@ namespace mai
                 running_time_{ 0.0f },
                 func_dic_{}
             {
-                auto start = Time::now();
-
+                auto timing = mai::utility::TimeRecord{ running_time_ };
                 for (q_.push(Node{ source, "" }); !q_.empty(); ++expansions_)
                 {
                     auto curr = q_.top(); q_.pop();
-                    if (curr.state == goal){ final_path_ = curr.path; goto Done; }
+                    if (curr.state == goal){ final_path_ = curr.path; return; }
                     for (auto make_child : func_dic_.at(curr.state.find('0'))) q_.push(make_child(curr));
                     max_q_length_ = std::max(max_q_length_, q_.size());
                 }
-
-            Done:
-                auto done = Time::now();
-                running_time_ = std::chrono::duration<float>(done - start).count();
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
