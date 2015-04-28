@@ -3,15 +3,15 @@
 Node
 { state, path }
 ```
- * default_cost_func.hpp
+ * `default_cost_func.hpp`
 ```cpp
 DefaultCostFunc (node) -> node.path.size() 
 ```
- * priority_queue.hpp
+ * `priority_queue.hpp`
 ```cpp
  Using pseudocodes from "Introduction to Algorithms 3rd edition" aka C.L.R.S.
 ```
- * time_record.hpp
+ * `time_record.hpp`
 ```cpp
 //a timer implemented with RAII style
 TimeRecord
@@ -24,7 +24,7 @@ TimeRecord
     write time duration to outside by reference 
 }
 ```
- * heuristic_func.hpp
+ * `heuristic_func.hpp`
 ```cpp
 ManhattanDistance (curr, goal)
   ret = 0
@@ -41,7 +41,7 @@ MisplacedTiles (curr, goal)
        count = count + 1
   return count
 ```
- * function_dictionary.hpp
+ * `function_dictionary.hpp`
 ```cpp
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
 FunctionDictionary 
@@ -77,4 +77,31 @@ FunctionDictionary
     this[4] = LambdaList{ up, dw, lt, rt };
 }
 ```
+ * `progressive_deepening_search_with_visited_list.hpp`
+```cpp
+
+PDSWithVList
+{
+ constructor()
+  record time
+  search(source, goal)
  
+ search(source, goal)
+  max_depth = 0
+  while true
+   reset q and visited_list
+   q.push(Node(source))
+   while q is not empty
+    curr = q.pop()
+    visited_list.insert(curr)
+    if goal == state(curr)
+     final_path = path(curr)
+     return
+    if length(path(curr)) < max_depth
+     for lamda : make_child in function_dictionary.at(state(curr).find('0'))
+      child = make_child(curr)
+      if visited_list doesn't contain state(child)
+       q.push(child)
+}
+
+```
