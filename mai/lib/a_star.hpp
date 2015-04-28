@@ -3,6 +3,7 @@
 #include <string>
 #include <queue>
 #include <chrono>
+#include <tuple>
 #include "time_record.hpp"
 #include "node.hpp"
 #include "heuristic_func.hpp"
@@ -38,13 +39,7 @@ namespace mai
                 : expansions_{ 0 }, max_q_length_{ 0 }, q_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
-                for (q_.push(Node{ source, "" }); !q_.empty(); ++expansions_)
-                {
-                    auto curr = q_.top(); q_.pop();
-                    if (curr.state == goal){ final_path_ = curr.path; return; }
-                    for (auto make_child : func_dic_.at(curr.state.find('0'))) q_.push(make_child(curr));
-                    max_q_length_ = std::max(max_q_length_, q_.size());
-                }
+                std::tie( final_path_, expansions_ ) = search(source, goal);
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
@@ -58,6 +53,20 @@ namespace mai
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
+
+            auto search(std::string const& source, std::string const goal) const -> std::tuple< std::string, std::size_t >
+            {
+                auto num_of_expansions = std::size_t{ 0 };
+                auto path = std::string{};
+                for (q_.push(Node{ source, "" }); !q_.empty(); ++num_of_expansions)
+                {
+                    auto curr = q_.top(); q_.pop();
+                    if (curr.state == goal){ path = curr.path; break; }
+                    for (auto make_child : func_dic_.at(curr.state.find('0'))) q_.push(make_child(curr));
+                    max_q_length_ = std::max(max_q_length_, q_.size());
+                }
+                return std::make_tuple( path, num_of_expansions );
+            }
         };
     }
 }
