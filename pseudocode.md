@@ -36,5 +36,12 @@ ManhattanDistance (curr, goal)
       digit = curr[i] - '0'
       ret += abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
   return ret
+  
+MisplacedTiles (curr, goal)
+  count = 0
+  for i = 0 to length(goal) - 1
+    if (curr[i] != goal[i]) 
+       count = count + 1
+  return count
 ```
  
