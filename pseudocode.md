@@ -1,7 +1,6 @@
  * `node.hpp`
 ```cpp
-Node
-{ state, path }
+let struct Node = { state, path }
 ```
  * `default_cost_func.hpp`
 ```cpp
@@ -16,10 +15,10 @@ let functor DefaultCostFunc (node) = node.path.size()
 //a timer implemented with RAII style
 TimeRecord
 {
-    constructor(reference)
+    let constructor(reference) be:
         start timer
   
-    destructor()
+    let destructor() be:
         stop timer and write time duration to outside by reference 
 }
 ```
@@ -82,11 +81,11 @@ FunctionDictionary
 
 PDSWithVList
 {
-    constructor()
+    let constructor() be:
         record time
         search(source, goal)
  
-    search(source, goal)
+    let function search(source, goal) be:
         max_depth = 0
         while true
             reset q and visited_list
@@ -96,7 +95,7 @@ PDSWithVList
                 visited_list.insert(curr)
                 if goal == state(curr)
                     final_path = path(curr), return
-            if length(path(curr)) < max_depth
+                if length(path(curr)) < max_depth
                 for lamda : make_child in function_dictionary.at(state(curr).find('0'))
                     child = make_child(curr)
                     if visited_list doesn't contain state(child)
