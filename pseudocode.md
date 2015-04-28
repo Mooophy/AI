@@ -42,12 +42,12 @@ let functor MisplacedTiles (curr, goal) be :
  * `function_dictionary.hpp`
 ```cpp
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
-FunctionDictionary 
+let class FunctionDictionary be:
 {
-    constructor()
+    let constructor() be:
         fill_dictionary()
     
-    fill_dictionary()
+    let method fill_dictionary() be:
         let lambda u(position) = position - 3
         let lambda d(position) = position + 3
         let lambda l(position) = position - 1
@@ -79,9 +79,9 @@ FunctionDictionary
  * `progressive_deepening_search_with_visited_list.hpp`
 ```cpp
 
-PDSWithVList
+let class PDSWithVList be:
 {
-    let constructor() be:
+    let constructor(source, goal) be:
         record time
         search(source, goal)
  
@@ -99,10 +99,33 @@ PDSWithVList
                 for lamda : make_child in function_dictionary.at(state(curr).find('0'))
                     child = make_child(curr)
                     if visited_list doesn't contain state(child)
-                    q.push(child)
+                        q.push(child)
 }
 ```
  * `best_first_search_with_visited_list.hpp`
 ```cpp
-
+let class BestFSWithVList be:
+{
+    //this functor is going to be passed to priority queue for comparison
+    let functor Greater(lhs, rhs) be:
+        define h as an object of HeuristicFunc
+        return h(lhs to goal) > h(rhs to goal)
+    
+    let constructor(source, goal) be:
+        record time
+        search(source, goal)
+    
+    let method search be:
+        q.push(Node(source))
+        while q is not empty
+            curr = q.pop()
+            visited_list.insert(state(curr))
+            if goal == state(curr)
+                final_path = path(curr)
+                return
+            for lamda : make_child in function_dictionary.at(state(curr).find('0'))
+                child = make_child(curr)
+                if visited_list doesn't contain state(child) 
+                    q.push(child)
+}
 ```
