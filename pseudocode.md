@@ -103,7 +103,7 @@ let PDSWithVList be:
             reset q and visited_list
             q.push(Node(source))
             while q is not empty
-                curr = q.pop()
+                curr = pop(q)
                 visited_list.insert(state(curr))
                 if goal == state(curr)
                     final_path = path(curr), return
@@ -112,6 +112,7 @@ let PDSWithVList be:
                         child = make_child(curr)
                         if visited_list doesn't contain state(child)
                             q.push(child)
+                max_q_length = max(max_q_length, size(q))
     as method
 }
 as class
@@ -142,7 +143,7 @@ let BestFSWithVList be:
                 child = make_child(curr)
                 if visited_list doesn't contain state(child) 
                     q.push(child)
-        max_q_length = max(max_q_length, size(q))
+            max_q_length = max(max_q_length, size(q))
     as method
 }
 as class
@@ -162,19 +163,21 @@ let UniformCostSearch be:
     
     let search(source, goal) be:
         q.push(source)
-        if goal == state(curr)
-            final_path = path(curr), return
-        if expanded_list doesn't contain state(curr)
-            expanded_list.insert(state(curr))
-            for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
-                child = make_child(curr)
-                if expanded_list doesn't contain state(child)
-                    find it as iterator in q, such that:
-                        state(child) == state(node)
-                    if it doesn't exist
-                        q.push(child)
-                    else if it has lower cost than child has
-                        swap(the node it pointing to, child)
-        max_q_length = max(max_q_length, size(q))
+        while q is not empty
+            if goal == state(curr)
+                final_path = path(curr), return
+            if expanded_list doesn't contain state(curr)
+                expanded_list.insert(state(curr))
+                for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+                    child = make_child(curr)
+                    if expanded_list doesn't contain state(child)
+                        find it as iterator in q, such that:
+                            state(child) == state(node)
+                        if it doesn't exist
+                            q.push(child)
+                        else if it has lower cost than child has
+                            swap(the node it pointing to, child)
+            max_q_length = max(max_q_length, size(q))
 }
+as class
 ```
