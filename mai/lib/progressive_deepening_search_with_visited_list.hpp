@@ -1,6 +1,6 @@
 #pragma once
 
-#include <set>
+#include <unordered_set>
 #include <string>
 #include <deque>
 #include <algorithm>
@@ -49,13 +49,13 @@ namespace mai
 
             auto max_depth() const -> std::size_t { return max_depth_; }
             auto max_q_length() const -> std::size_t { return max_q_length_; }
-            auto visited() const -> std::set<std::string> const& { return visited_; }
+            auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
             auto path() const -> std::string const& { return final_path_; }
             auto running_time() const -> float { return running_time_; }
 
         private:
             std::size_t max_depth_, max_q_length_;
-            std::set<std::string> visited_;
+            std::unordered_set<std::string> visited_;
             std::deque < mai::search::Node > q_;
             std::string final_path_;
             float running_time_;

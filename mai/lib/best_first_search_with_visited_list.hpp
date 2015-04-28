@@ -2,7 +2,7 @@
 
 #include <string>
 #include <queue>
-#include <set>
+#include <unordered_set>
 #include <chrono>
 #include "time_record.hpp"
 #include "node.hpp"
@@ -51,13 +51,13 @@ namespace mai
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
-            auto visited() const -> std::set<std::string> const& { return visited_; }
+            auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
             auto path() const -> std::string const& { return final_path_; }
             auto running_time() const -> float { return running_time_; }
 
         private:
             std::size_t max_q_length_;
-            std::set<std::string> visited_;
+            std::unordered_set<std::string> visited_;
             MinPriorityQueue pq_;
             std::string final_path_;
             float running_time_;
