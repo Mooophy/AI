@@ -2,13 +2,13 @@
 ```f#
 let Node be: 
     { state, path } 
-as a struct
+as struct
 ```
  * `default_cost_func.hpp`
 ```f#
 let DefaultCostFunc (node) be: 
     return node.path.size() 
-as a functor
+as functor
 ```
  * `priority_queue.hpp`
 ```f#
@@ -25,7 +25,7 @@ let TimeRecord be:
     let destructor() be:
         stop timer and write time duration to outside by reference 
 }
-as a class
+as class
 
 ```
  * `heuristic_func.hpp`
@@ -37,7 +37,7 @@ let ManhattanDistance (curr, goal) be :
         digit = curr[i] - '0'
         ret += abs(i / 3 - digit / 3) + abs(i % 3 - digit % 3)
     return ret
-as a functor
+as functor
   
 let MisplacedTiles (curr, goal) be :
     count = 0
@@ -45,7 +45,7 @@ let MisplacedTiles (curr, goal) be :
         if (curr[i] != goal[i]) 
             count = count + 1
     return count
-as a functor
+as functor
 ```
  * `function_dictionary.hpp`
 ```f#
@@ -56,22 +56,22 @@ let FunctionDictionary be:
         fill_dictionary()
     
     let fill_dictionary() be:
-        let u(position) = position - 3 as a lambda
-        let d(position) = position + 3 as a lambda 
-        let l(position) = position - 1 as a lambda 
-        let r(position) = position + 1 as a lambda
+        let u(position) = position - 3 as lambda
+        let d(position) = position + 3 as lambda 
+        let l(position) = position - 1 as lambda 
+        let r(position) = position + 1 as lambda
     
         let make_child(parent, move_lambda, direction) be:
             pos = state(parent).find('0')
             stt = state(parent)
             swap(stt[pos], stt[move_lambda(pos)])
             return Node(stt, path(parent) + direction)
-        as a lambda
+        as lambda
     
-        let up(parent) = make_child(parent, u, 'U') as a lambda
-        let dw(parent) = make_child(parent, d, 'D') as a lambda
-        let lt(parent) = make_child(parent, l, 'L') as a lambda
-        let rt(parent) = make_child(parent, r, 'R') as a lambda
+        let up(parent) = make_child(parent, u, 'U') as lambda
+        let dw(parent) = make_child(parent, d, 'D') as lambda
+        let lt(parent) = make_child(parent, l, 'L') as lambda
+        let rt(parent) = make_child(parent, r, 'R') as lambda
     
         //fill possible lambda into dictionary
         this[0] = LambdaList{ dw, rt }
@@ -83,13 +83,13 @@ let FunctionDictionary be:
         this[5] = LambdaList{ up, dw, lt };
         this[7] = LambdaList{ up, lt, rt };
         this[4] = LambdaList{ up, dw, lt, rt };
-    as a method
+    as method
 }
-as a class
+as class
 ```
  * `progressive_deepening_search_with_visited_list.hpp`
 ```f#
-let class PDSWithVList be:
+let PDSWithVList be:
 {
     let constructor(source, goal) be:
         record time
@@ -110,8 +110,9 @@ let class PDSWithVList be:
                         child = make_child(curr)
                         if visited_list doesn't contain state(child)
                             q.push(child)
-    as a method
+    as method
 }
+as class
 ```
  * `best_first_search_with_visited_list.hpp`
 ```cpp
@@ -121,7 +122,7 @@ let BestFSWithVList be:
     let Greater(lhs, rhs) be:
         define h as an object of HeuristicFunc
         return h(lhs to goal) > h(rhs to goal)
-    as a functor 
+    as functor 
     
     let constructor(source, goal) be:
         record time
@@ -135,11 +136,11 @@ let BestFSWithVList be:
             if goal == state(curr)
                 final_path = path(curr)
                 return
-            for lamda : make_child in function_dictionary.at(state(curr).find('0'))
+            for make_child as lambda in function_dictionary.at(state(curr).find('0'))
                 child = make_child(curr)
                 if visited_list doesn't contain state(child) 
                     q.push(child)
-    as a method
+    as method
 }
-as a class
+as class
 ```
