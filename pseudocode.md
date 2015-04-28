@@ -1,7 +1,8 @@
  * `node.hpp`
 ```f#
 let Node be: 
-    { state, path } 
+    state
+    path  
 as struct
 ```
  * `default_cost_func.hpp`
@@ -51,7 +52,6 @@ as functor
 ```f#
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
 let FunctionDictionary be:
-{
     let FunctionDictionary() be:
         fill_dictionary()
     as constructor
@@ -85,13 +85,11 @@ let FunctionDictionary be:
         this[7] = LambdaList{ up, lt, rt };
         this[4] = LambdaList{ up, dw, lt, rt };
     as method
-}
 as class
 ```
  * `progressive_deepening_search_with_visited_list.hpp`
 ```f#
 let PDSWithVList be:
-{
     let PDSWithVList(source, goal) be:
         record time
         search(source, goal)
@@ -114,13 +112,11 @@ let PDSWithVList be:
                             q.push(child)
                 max_q_length = max(max_q_length, size(q))
     as method
-}
 as class
 ```
  * `best_first_search_with_visited_list.hpp`
 ```cpp
 let BestFSWithVList be:
-{
     //this functor is going to be passed to priority queue for comparison
     let Greater(lhs, rhs) be:
         let h be an object as HeuristicFunc
@@ -145,13 +141,11 @@ let BestFSWithVList be:
                     q.push(child)
             max_q_length = max(max_q_length, size(q))
     as method
-}
 as class
 ```
  * `UniformCostSearch.hpp`
 ```f#
 let UniformCostSearch be:
-{
     let Shorter(lhs, rhs) be:
         return length(path(lhs)) > length(path(rhs))
     as functor
@@ -178,6 +172,6 @@ let UniformCostSearch be:
                         else if it has lower cost than child has
                             swap(the node it pointing to, child)
             max_q_length = max(max_q_length, size(q))
-}
+    as method
 as class
 ```
