@@ -39,7 +39,7 @@ namespace mai
                 : expansions_{ 0 }, max_q_length_{ 0 }, q_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
-                std::tie( final_path_, expansions_ ) = search(source, goal);
+                std::tie( final_path_, expansions_ ) = search( source, goal );
             }
 
             auto max_q_length() const -> std::size_t { return max_q_length_; }
