@@ -12,9 +12,6 @@ Seven algorithms to solve 8 puzzle
 -----------------------------------------------------------
 ####Pseudocode
 
-<<<<<<< HEAD
-```
-=======
 ```fsharp
 //
 //@filename = "node.hpp"
