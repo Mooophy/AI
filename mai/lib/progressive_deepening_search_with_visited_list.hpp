@@ -43,7 +43,6 @@ namespace mai
                 {
                     visited_.clear();
                     q_.clear();
-                    auto timing = mai::utility::TimeRecord{ running_time_ };
                     for (q_.push_front(Node(source, "")); !q_.empty(); max_q_length_ = std::max(max_q_length_, q_.size()))
                     {
                         auto curr = q_.front();	q_.pop_front();

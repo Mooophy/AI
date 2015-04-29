@@ -3,7 +3,6 @@
 #include <string>
 #include <queue>
 #include <chrono>
-#include <tuple>
 #include "time_record.hpp"
 #include "node.hpp"
 #include "heuristic_func.hpp"
