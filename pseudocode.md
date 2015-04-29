@@ -1,10 +1,32 @@
+Seven algorithms to solve 8 puzzle 
+-----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ####Features
  * `FunctionDictionary` adopted `std::unorded_map` i.e. a hash table as it's container. Due to no mutation at run time, it guarantees the best lookup performance.
  * By using `std::unordered_set`, all alorithms that have visted list inside are able to operate on it at the smallest time complexity.  
  * A custom defined priority queue was implemented for "uniform cost search" and "A* with strict expanded list" to precisely implement them as required.
  * Following Object Orientation and Functional programming paradigms, this code provides better readability, modularity, abstraction and maintainability. 
  * Following TTD(Test-driven development), the unit tests covering all code guarantee everything has been done as expected.
-
+ * Pure C++ 11.
+ 
+-----------------------------------------------------------
+####Pseudocode for each file
 
 ```f#
 //
