@@ -40,7 +40,6 @@ let MisplacedTiles (curr, goal) be :
             increment(count)
     return count
 as functor
- ```
 
 //function_dictionary.hpp
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
