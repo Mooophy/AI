@@ -1,4 +1,4 @@
- *`node.hpp`
+ * `node.hpp`
  
  ```f#
 let Node be: 
