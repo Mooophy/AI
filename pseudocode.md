@@ -118,7 +118,7 @@ let PDSWithVList be:
                     final_path = path(curr), return
                 if length(path(curr)) < max_depth
                     let func_list point to: function_dictionary[find position of '0' in state(curr)]) as referrence
-                    for lamda : make_child in funct_list
+                    for each make_child as lambda in funct_list
                         child = make_child(curr)
                         if visited_list doesn't contain state(child)
                             q.push(child)
