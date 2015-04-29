@@ -1,12 +1,12 @@
  * `node.hpp`
-```f#
+ ```f#
 let Node be: 
     state
     path  
 as struct
-```
+ ```
  * `default_cost_func.hpp`
-```f#
+ ```f#
 let DefaultCostFunc (node) be: 
     return size(path(node))
 as functor
@@ -14,9 +14,9 @@ as functor
  * `priority_queue.hpp`
 ```f#
  Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.
-```
+ ```
  * `time_record.hpp`
-```f#
+ ```f#
 //a timer implemented with RAII style
 let TimeRecord be:
     let constructor(reference) be:
@@ -25,9 +25,9 @@ let TimeRecord be:
     let destructor() be:
         stop timer and write time duration to outside by reference 
 as class
-```
+ ```
  * `heuristic_func.hpp`
-```f#
+ ```f#
 let ManhattanDistance (curr, goal) be :
     ret = 0
     for i = 0 to length(goal) - 1
@@ -44,9 +44,9 @@ let MisplacedTiles (curr, goal) be :
             increment(count)
     return count
 as functor
-```
+ ```
  * `function_dictionary.hpp`
-```f#
+ ```f#
 //this class implmented a function dictionary mapping each position of `0` to its possible children state.
 let FunctionDictionary be:
     let FunctionDictionary() be:
@@ -83,9 +83,9 @@ let FunctionDictionary be:
         this[4] = LambdaList{ up, dw, lt, rt };
     as method
 as class
-```
+ ```
  * `progressive_deepening_search_with_visited_list.hpp`
-```f#
+ ```f#
 let PDSWithVList be:
     let PDSWithVList(source, goal) be:
         record time
@@ -111,9 +111,9 @@ let PDSWithVList be:
                 max_q_length = max(max_q_length, size(q))
     as method
 as class
-```
+ ```
  * `best_first_search_with_visited_list.hpp`
-```cpp
+ ```f#
 let BestFSWithVList be:
     //this functor is going to be passed to priority queue for comparison
     let Greater(lhs, rhs) be:
@@ -141,9 +141,9 @@ let BestFSWithVList be:
             max_q_length = max(max_q_length, size(q))
     as method
 as class
-```
+ ```
  * `UniformCostSearch.hpp`
-```f#
+ ```f#
 let UniformCostSearch be:
     let Shorter(lhs, rhs) be:
         return length(path(lhs)) > length(path(rhs))
@@ -173,7 +173,7 @@ let UniformCostSearch be:
             max_q_length = max(max_q_length, size(q))
     as method
 as class
-```
+ ```
  * `a_star.hpp`
  ```f#
  let AStar be:
