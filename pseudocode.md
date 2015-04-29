@@ -1,16 +1,19 @@
- * `node.hpp`
+ *`node.hpp`
+ 
  ```f#
 let Node be: 
     state
     path  
 as struct
  ```
+ 
  * `default_cost_func.hpp`
  ```f#
 let DefaultCostFunc (node) be: 
     return size(path(node))
 as functor
 ```
+
  * `priority_queue.hpp`
 ```f#
  Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.
