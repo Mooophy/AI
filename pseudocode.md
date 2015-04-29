@@ -11,10 +11,7 @@ Seven algorithms to solve 8 puzzle by Liu Kuan 12086075
 -----------------------------------------------------------
 ####Pseudocode for each file
 
-```f#
-//
-//filename = "node.hpp"
-//
+```
 let Node be: 
     state
     path  
