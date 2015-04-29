@@ -204,6 +204,7 @@ as class
     as method
 as class
  ```
+ 
   * `a_star_with_strict_expanded_list.hpp`
  ```f#
  let AStarSEL be:
