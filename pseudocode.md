@@ -1,20 +1,31 @@
 ```f#
-//node.hpp
+//
+//@filename = "node.hpp"
+//
 let Node be: 
     state
     path  
 as struct
- 
-//default_cost_func.hpp
+
+
+//
+//@filename = "default_cost_func.hpp"
+// 
 let DefaultCostFunc (node) be: 
     return size(path(node))
 as functor
 
 
-//priority_queue.hpp
+//
+//@filename = "priority_queue.hpp"
+// 
 [Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.]
 
-//time_record.hpp   a timer implemented with RAII style
+
+//
+//@filename = "time_record.hpp"   
+//@note = "an RAII style timer"
+//
 let TimeRecord be:
     let constructor(reference) be:
         start timer
@@ -23,7 +34,10 @@ let TimeRecord be:
         stop timer and write time duration to outside by reference 
 as class
 
-//heuristic_func.hpp
+
+//
+//@filename = "heuristic_func.hpp"
+//
 let ManhattanDistance (curr, goal) be:
     ret = 0
     for i = 0 to length(goal) - 1
@@ -41,8 +55,11 @@ let MisplacedTiles (curr, goal) be :
     return count
 as functor
 
-//function_dictionary.hpp
-//this class implmented a function dictionary mapping each position of `0` to its possible children state.
+
+//
+//@file_name = function_dictionary.hpp
+//@note = this class implmented a function dictionary mapping each position of `0` to its possible children state.
+//
 let FunctionDictionary be:
     let FunctionDictionary() be:
         fill_dictionary()
@@ -80,7 +97,9 @@ let FunctionDictionary be:
 as class
 
 
-//progressive_deepening_search_with_visited_list.hpp`
+//
+//@filename = progressive_deepening_search_with_visited_list.hpp`
+//
 let PDSWithVList be:
     let PDSWithVList(source, goal) be:
         record time
@@ -107,7 +126,10 @@ let PDSWithVList be:
     as method
 as class
 
-//best_first_search_with_visited_list.hpp
+
+//
+//@filename = "best_first_search_with_visited_list.hpp"
+//
 let BestFSWithVList be:
     //this functor is going to be passed to priority queue for comparison
     let Greater(lhs, rhs) be:
@@ -136,7 +158,10 @@ let BestFSWithVList be:
     as method
 as class
  
-//UniformCostSearch.hpp
+ 
+//
+//@filename = "UniformCostSearch.hpp"
+//
 let UniformCostSearch be:
     let Shorter(lhs, rhs) be:
         return length(path(lhs)) > length(path(rhs))
@@ -167,7 +192,9 @@ let UniformCostSearch be:
     as method
 as class
 
-//a_star.hpp
+//
+//@filename = "UniformCostSearch.hpp"
+//
 let AStar be:
     let Greater(lhs, rhs) be:
         let h be an object of HeuristicFunc
@@ -192,8 +219,10 @@ let AStar be:
             max_q_length = max(max_q_length, size(q))
     as method
 as class
- 
-//a_star_with_strict_expanded_list.hpp
+
+// 
+//@filename = "a_star_with_strict_expanded_list.hpp"
+//
 let AStarSEL be:
    let Less(lhs, rhs) be:
         let h be an object of HeuristicFunc
