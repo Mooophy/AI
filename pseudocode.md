@@ -1,22 +1,5 @@
-Seven algorithms to solve 8 puzzle 
------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Seven algorithms to solve 8 puzzle by Liu Kuan 12086075
+--------------------------
 ####Features
  * `FunctionDictionary` adopted `std::unorded_map` i.e. a hash table as it's container. Due to no mutation at run time, it guarantees the best lookup performance.
  * By using `std::unordered_set`, all alorithms that have visted list inside are able to operate on it at the smallest time complexity.  
