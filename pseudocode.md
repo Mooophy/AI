@@ -13,7 +13,7 @@ Seven algorithms to solve 8 puzzle by Liu Kuan 12086075
 
 ```f#
 //
-//@filename = "node.hpp"
+//filename = "node.hpp"
 //
 let Node be: 
     state
@@ -22,7 +22,7 @@ as struct
 
 
 //
-//@filename = "default_cost_func.hpp"
+//filename = "default_cost_func.hpp"
 // 
 let DefaultCostFunc (node) be: 
     return size(path(node))
@@ -30,14 +30,14 @@ as functor
 
 
 //
-//@filename = "priority_queue.hpp"
+//filename = "priority_queue.hpp"
 // 
 [Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.]
 
 
 //
-//@filename = "time_record.hpp"   
-//@note = "an RAII style timer"
+//filename = "time_record.hpp"   
+//note = "an RAII style timer"
 //
 let TimeRecord be:
     let constructor(reference) be:
@@ -49,7 +49,7 @@ as class
 
 
 //
-//@filename = "heuristic_func.hpp"
+//filename = "heuristic_func.hpp"
 //
 let ManhattanDistance (curr, goal) be:
     ret = 0
@@ -70,8 +70,8 @@ as functor
 
 
 //
-//@file_name = function_dictionary.hpp
-//@note = this class implmented a function dictionary mapping each position of `0` to its possible children state.
+//file_name = function_dictionary.hpp
+//note = this class implmented a function dictionary mapping each position of `0` to its possible children state.
 //
 let FunctionDictionary be:
     let FunctionDictionary() be:
@@ -111,7 +111,7 @@ as class
 
 
 //
-//@filename = progressive_deepening_search_with_visited_list.hpp`
+//filename = progressive_deepening_search_with_visited_list.hpp`
 //
 let PDSWithVList be:
     let PDSWithVList(source, goal) be:
@@ -141,7 +141,7 @@ as class
 
 
 //
-//@filename = "best_first_search_with_visited_list.hpp"
+//filename = "best_first_search_with_visited_list.hpp"
 //
 let BestFSWithVList be:
     //this functor is going to be passed to priority queue for comparison
@@ -173,7 +173,7 @@ as class
  
  
 //
-//@filename = "UniformCostSearch.hpp"
+//filename = "UniformCostSearch.hpp"
 //
 let UniformCostSearch be:
     let Shorter(lhs, rhs) be:
@@ -206,7 +206,7 @@ let UniformCostSearch be:
 as class
 
 //
-//@filename = "UniformCostSearch.hpp"
+//filename = "UniformCostSearch.hpp"
 //
 let AStar be:
     let Greater(lhs, rhs) be:
@@ -234,7 +234,7 @@ let AStar be:
 as class
 
 // 
-//@filename = "a_star_with_strict_expanded_list.hpp"
+//filename = "a_star_with_strict_expanded_list.hpp"
 //
 let AStarSEL be:
    let Less(lhs, rhs) be:
