@@ -1,3 +1,11 @@
+####Features
+ * `FunctionDictionary` adopted `std::unorded_map` i.e. a hash table as it's container. Due to no mutation at run time, it grantee the best lookup performance.
+ * By using `std::unordered_set`, all alorithms that has visted list inside is able to operate on it at the smallest time complexity.  
+ * A custom defined priority queue was implemented for "uniform cost search" and "A* with strict expanded list" to precisely implemente the two search algoriths as required.
+ * Following Object Orientation and Functional programming paradigms, this code provides better readability, modularity, abstraction and maintainability. 
+ * Following TTD(Test-driven development), the unit tests covers all code that have been developed.
+
+
 ```f#
 //
 //@filename = "node.hpp"
