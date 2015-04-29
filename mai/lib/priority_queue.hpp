@@ -1,8 +1,10 @@
 //
-// mai::container::priority_queue
-//			class template;
-//			support iteration like std::vector;
-//			implmented using pseudocode from CLRS.
+//  This file implemented a custom priority queue data structure. Compared with std::priority_queue, 
+//  this one allows to access and change any item held in it by openning public interface to its 
+//  underlying data structure. This feature is essential for "uniform cost search" and "A* with strict
+//  expanded list".
+//
+//  Reference : Chapter 6, "Introduction to Algorithms 3rd ed", aka CLRS.
 //
 
 #pragma once
@@ -16,13 +18,20 @@ namespace mai
 {
     namespace container
     {
+        //
+        //  parent
+        //  O(1)
+        //
         template<typename Iterator> 
         auto inline parent(Iterator first, Iterator it) -> Iterator
         {
             return first + (it - first - 1) / 2;
         }
 
-        //return left child if within range, return last otherwise
+        //
+        //  left_child
+        //  O(1)
+        //
         template<typename Iterator>
         auto inline left_child(Iterator first, Iterator last, Iterator it) -> Iterator
         {
@@ -31,7 +40,10 @@ namespace mai
             return offset > size ? last : first + offset;
         }
 
-        //return right child if within range, return last otherwise
+        //
+        //  right_child
+        //  O(1)
+        //
         template<typename Iterator>
         auto inline right_child(Iterator first, Iterator last, Iterator it) -> Iterator
         {
@@ -39,6 +51,11 @@ namespace mai
             return left != last ? left + 1 : last;
         }
 
+        //
+        //  heapify
+        //  O(lg n)
+        //  maintain heap's peroperties with a bottom up way
+        //
         template<typename Iterator, typename CompareFunc>
         auto heapify(Iterator first, Iterator last, Iterator curr, CompareFunc && compare) -> void
         {
@@ -64,6 +81,10 @@ namespace mai
             }
         }
 
+        //
+        //  build_heap
+        //  O(n)
+        //
         template<typename Iterator, typename CompareFunc >
         auto inline build_heap(Iterator first, Iterator last, CompareFunc && compare) -> void
         {
@@ -75,6 +96,9 @@ namespace mai
             }
         }
 
+        //
+        //  PriorityQueue
+        //
         template<typename T>
         class PriorityQueue
         {

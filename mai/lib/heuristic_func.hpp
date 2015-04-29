@@ -5,6 +5,10 @@ namespace mai
 {
     namespace search
     {
+        //
+        //  functor ManhattanDistance
+        //  to generate a heuristic value
+        //
         struct ManhattanDistance
         {
             auto operator()(std::string const& curr, std::string const& goal) const -> std::size_t
@@ -21,6 +25,10 @@ namespace mai
             }
         };
 
+        //
+        // functor MisplacedTiles
+        // to generate a heuristic value
+        //
         struct MisplacedTiles
         {
             auto operator()(std::string const& curr, std::string const& goal) const -> std::size_t

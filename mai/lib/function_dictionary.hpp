@@ -10,8 +10,16 @@ namespace mai
 {
     namespace search
     {
+        //
+        //  class FunctionDictionary
+        //  This a function dictionary that stores functions needed to generate children states 
+        //  for any given state. All search algorithms use this dictionary
+        //
         class FunctionDictionary : public std::unordered_map < unsigned, std::vector<std::function<Node(Node const&)>> >
         {
+            //
+            //  fill dictionary
+            //
             auto fill_dic() -> void
             {
                 auto u = [](unsigned pos){ return pos - 3; };

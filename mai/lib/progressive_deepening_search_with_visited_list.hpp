@@ -1,5 +1,4 @@
 #pragma once
-
 #include <unordered_set>
 #include <string>
 #include <deque>
@@ -13,9 +12,16 @@ namespace mai
 {
     namespace search
     {
+        //
+        //  class PDSWithVList
+        //  Implementation for "progressive deepening search with visited list"
+        //
         class PDSWithVList
         {
         public:
+            //
+            //  constructor
+            //
             PDSWithVList(std::string const& source, std::string const& goal) 
                 : max_depth_{ 0 }, max_q_length_{ 0 }, visited_{}, q_{}, final_path_{}, running_time_{ 0 }, func_dic_{}
             {
@@ -23,6 +29,9 @@ namespace mai
                 search(source, goal);
             }
 
+            //
+            //  public interfaces
+            //
             auto max_depth() const -> std::size_t { return max_depth_; }
             auto max_q_length() const -> std::size_t { return max_q_length_; }
             auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
@@ -30,6 +39,9 @@ namespace mai
             auto running_time() const -> float { return running_time_; }
 
         private:
+            //
+            //  data members
+            //
             std::size_t max_depth_, max_q_length_;
             std::unordered_set<std::string> visited_;
             std::deque < mai::search::Node > q_;
@@ -37,6 +49,9 @@ namespace mai
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
 
+            //
+            //  implementation for alforithm
+            //
             auto search(std::string const& source, std::string const& goal) -> void
             {
                 for (max_depth_ = 0; /* true */; ++max_depth_)

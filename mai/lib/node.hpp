@@ -1,11 +1,14 @@
 #pragma once
-
 #include <string>
 
 namespace mai
 {
     namespace search
     {
+        //
+        //  struct Node 
+        //  used in all search algorithms
+        //
         struct Node
         {
             Node() = default;

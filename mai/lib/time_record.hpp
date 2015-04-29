@@ -5,6 +5,10 @@ namespace mai
 {
     namespace utility
     {
+        //
+        //  class TimeRecord
+        //  an RAII style timer using std::chrono in c++ 11
+        //
         class TimeRecord
         {
         public:
