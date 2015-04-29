@@ -1,5 +1,4 @@
 #pragma once
-
 #include <map>
 #include <unordered_map>
 #include <functional>
@@ -39,7 +38,6 @@ namespace mai
                 auto dw = [&](Node const& parent) -> Node { return make_child(parent, d, 'D'); };
                 auto lt = [&](Node const& parent) -> Node { return make_child(parent, l, 'L'); };
                 auto rt = [&](Node const& parent) -> Node { return make_child(parent, r, 'R'); };
-
                 //
                 //  adress:
                 //	0	1	2

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 #include <unordered_set>
 #include <chrono>
@@ -14,9 +13,16 @@ namespace mai
 {
     namespace search
     {
+        //
+        //  A* with strict expanded list
+        //
         template<typename HeuristicFunc, typename CostFunc = mai::search::DefaultCostFunc>
         class AStarSEL
         {
+            //
+            //  functor Less
+            //  compare two node's h value plus c value
+            //
             struct Less
             {
                 explicit Less(std::string const& g) : goal(g), h{}, c{} {}
@@ -32,25 +38,36 @@ namespace mai
 
             using Q = mai::container::PriorityQueue < Node > ;
         public:
+            //
+            //  constructor
+            //
             AStarSEL(std::string const& source, std::string const& goal) 
                 : max_q_length_{ 0u }, expanded_{}, q_{ Less{ goal } }, final_path_{}, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 search(source, goal);
             }
-
+            //
+            //  public interfaces
+            //
             auto max_q_length() const -> std::size_t { return max_q_length_; }
             auto running_time() const -> float { return running_time_; }
             auto path() const -> std::string const&{ return final_path_; }
             auto expanded() const -> std::unordered_set<std::string> const& { return expanded_; }
+        
         private:
+            //
+            //  data members
+            //
             std::size_t max_q_length_;
             std::unordered_set<std::string> expanded_;
             Q q_;
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
-
+            //
+            //  algorithm
+            //
             auto search(std::string const& source, std::string const& goal) -> void
             {
                 auto less = Less{ goal };

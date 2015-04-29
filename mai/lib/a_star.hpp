@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 #include <queue>
 #include <chrono>
@@ -19,6 +18,10 @@ namespace mai
         template<typename HeuristicFunc, typename CostFunc = DefaultCostFunc>
         class AStar
         {
+            //
+            //  functor Greater
+            //  compare two nodes' h value plus c value
+            //
             struct Greater
             {
                 explicit Greater(std::string const& g) : goal(g), h{}, c{} {}
@@ -34,25 +37,35 @@ namespace mai
 
             using Q = std::priority_queue < Node, std::vector<Node>, Greater >;
         public:
+            //
+            //  constructor
+            //
             AStar(std::string const& source, std::string const& goal)
                 : expansions_{ 0 }, max_q_length_{ 0 }, q_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 search( source, goal );
             }
-
+            //
+            //  public interfaces
+            //
             auto max_q_length() const -> std::size_t { return max_q_length_; }
             auto running_time() const -> float { return running_time_; }
             auto path() const -> std::string const&{ return final_path_; }
             auto num_of_expansions() const -> std::size_t { return expansions_; }
 
         private:
+            //
+            //  data members
+            //
             std::size_t expansions_, max_q_length_;
             Q q_;
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
-
+            //
+            //  algorithm
+            //
             auto search(std::string const& source, std::string const goal) -> void
             {
                 for (q_.push(Node{ source, "" }); !q_.empty(); ++expansions_)

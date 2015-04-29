@@ -50,7 +50,7 @@ namespace mai
             const mai::search::FunctionDictionary func_dic_;
 
             //
-            //  implementation for alforithm
+            //  algorithm 
             //
             auto search(std::string const& source, std::string const& goal) -> void
             {

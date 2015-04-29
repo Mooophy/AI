@@ -8,7 +8,6 @@
 //
 
 #pragma once
-
 #include <vector>
 #include <functional>
 #include <stdexcept>

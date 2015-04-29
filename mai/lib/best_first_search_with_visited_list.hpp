@@ -1,5 +1,4 @@
 #pragma once 
-
 #include <string>
 #include <queue>
 #include <unordered_set>
@@ -13,9 +12,16 @@ namespace mai
 {
     namespace search
     {
+        //
+        //  Implementation for "best first search with visited list"
+        //
         template<typename HeuristicFunc>
         class BestFSWithVList
         {
+            //
+            //  functor Greater
+            //  Compare two nodes' heuristic values.
+            //
             struct Greater
             {
                 Greater(std::string const& g) : goal(g), h{}{}
@@ -27,26 +33,36 @@ namespace mai
 
             using MinPriorityQueue = std::priority_queue < Node, std::vector<Node>, Greater > ;
         public:
+            //
+            //  constructor
+            //
             BestFSWithVList(std::string const& source, std::string const& goal) 
                 : max_q_length_{ 0 }, visited_{}, pq_{ Greater{ goal } }, final_path_{}, running_time_{ 0.0f }, func_dic_{}
             {
                 auto timing = mai::utility::TimeRecord{ running_time_ };
                 search(source, goal);
             }
-
+            //
+            //  public interfaces
+            //
             auto max_q_length() const -> std::size_t { return max_q_length_; }
             auto visited() const -> std::unordered_set<std::string> const& { return visited_; }
             auto path() const -> std::string const& { return final_path_; }
             auto running_time() const -> float { return running_time_; }
 
         private:
+            //
+            //  data members
+            //
             std::size_t max_q_length_;
             std::unordered_set<std::string> visited_;
             MinPriorityQueue pq_;
             std::string final_path_;
             float running_time_;
             const mai::search::FunctionDictionary func_dic_;
-
+            //
+            //  algorithm 
+            //
             auto search(std::string const& source, std::string const& goal) -> void
             {
                 for (pq_.push(Node(source, "")); !pq_.empty(); max_q_length_ = std::max(max_q_length_, pq_.size()))
