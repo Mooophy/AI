@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <unordered_map>
 #include <functional>
 #include <vector>
 #include "node.hpp"
@@ -9,7 +10,7 @@ namespace mai
 {
     namespace search
     {
-        class FunctionDictionary : public std::map < unsigned, std::vector<std::function<Node(Node const&)>> >
+        class FunctionDictionary : public std::unordered_map < unsigned, std::vector<std::function<Node(Node const&)>> >
         {
             auto fill_dic() -> void
             {
@@ -31,23 +32,21 @@ namespace mai
                 auto lt = [&](Node const& parent) -> Node { return make_child(parent, l, 'L'); };
                 auto rt = [&](Node const& parent) -> Node { return make_child(parent, r, 'R'); };
 
-                using FuncList = std::vector < std::function<Node(Node const&)> > ;
-
+                //
                 //  adress:
                 //	0	1	2
                 //	3	4	5
                 //	6	7	8
-
+                //
+                using FuncList = std::vector < std::function<Node(Node const&)> >;
                 (*this)[0] = FuncList{ dw, rt };
                 (*this)[2] = FuncList{ dw, lt };
                 (*this)[6] = FuncList{ up, rt };
                 (*this)[8] = FuncList{ up, lt };
-
                 (*this)[1] = FuncList{ dw, lt, rt };
                 (*this)[3] = FuncList{ up, dw, rt };
                 (*this)[5] = FuncList{ up, dw, lt };
                 (*this)[7] = FuncList{ up, lt, rt };
-
                 (*this)[4] = FuncList{ up, dw, lt, rt };
             }
 
