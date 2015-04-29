@@ -1,5 +1,6 @@
-Seven algorithms to solve 8 puzzle by Liu Kuan 12086075
+Seven algorithms to solve 8 puzzle 
 --------------------------
+######by Liu Kuan 12086075
 ####Features
  * `FunctionDictionary` adopted `std::unorded_map` i.e. a hash table as it's container. Due to no mutation at run time, it guarantees the best lookup performance.
  * By using `std::unordered_set`, all alorithms that have visted list inside are able to operate on it at the smallest time complexity.  
@@ -9,9 +10,16 @@ Seven algorithms to solve 8 puzzle by Liu Kuan 12086075
  * Pure C++ 11.
  
 -----------------------------------------------------------
-####Pseudocode for each file
+####Pseudocode
 
+<<<<<<< HEAD
 ```
+=======
+```fsharp
+//
+//@filename = "node.hpp"
+//
+>>>>>>> 44346eaaf2125ecc45f5f4dd47023ecc81755087
 let Node be: 
     state
     path  
@@ -19,7 +27,7 @@ as struct
 
 
 //
-//filename = "default_cost_func.hpp"
+//@filename = "default_cost_func.hpp"
 // 
 let DefaultCostFunc (node) be: 
     return size(path(node))
@@ -27,13 +35,13 @@ as functor
 
 
 //
-//filename = "priority_queue.hpp"
+//@filename = "priority_queue.hpp"
 // 
 [Using pseudocodes from "Chapter 6, Introduction to Algorithms 3rd edition" aka C.L.R.S.]
 
 
 //
-//filename = "time_record.hpp"   
+//@filename = "time_record.hpp"   
 //note = "an RAII style timer"
 //
 let TimeRecord be:
@@ -46,7 +54,7 @@ as class
 
 
 //
-//filename = "heuristic_func.hpp"
+//@filename = "heuristic_func.hpp"
 //
 let ManhattanDistance (curr, goal) be:
     ret = 0
@@ -67,8 +75,8 @@ as functor
 
 
 //
-//file_name = function_dictionary.hpp
-//note = this class implmented a function dictionary mapping each position of `0` to its possible children state.
+//@file_name = function_dictionary.hpp
+//@note = this class implmented a function dictionary mapping each position of `0` to its possible children state.
 //
 let FunctionDictionary be:
     let FunctionDictionary() be:
@@ -108,7 +116,7 @@ as class
 
 
 //
-//filename = progressive_deepening_search_with_visited_list.hpp`
+//@filename = progressive_deepening_search_with_visited_list.hpp`
 //
 let PDSWithVList be:
     let PDSWithVList(source, goal) be:
@@ -138,7 +146,7 @@ as class
 
 
 //
-//filename = "best_first_search_with_visited_list.hpp"
+//@filename = "best_first_search_with_visited_list.hpp"
 //
 let BestFSWithVList be:
     //this functor is going to be passed to priority queue for comparison
@@ -170,7 +178,7 @@ as class
  
  
 //
-//filename = "UniformCostSearch.hpp"
+//@filename = "UniformCostSearch.hpp"
 //
 let UniformCostSearch be:
     let Shorter(lhs, rhs) be:
@@ -203,7 +211,7 @@ let UniformCostSearch be:
 as class
 
 //
-//filename = "UniformCostSearch.hpp"
+//@filename = "UniformCostSearch.hpp"
 //
 let AStar be:
     let Greater(lhs, rhs) be:
@@ -231,7 +239,7 @@ let AStar be:
 as class
 
 // 
-//filename = "a_star_with_strict_expanded_list.hpp"
+//@filename = "a_star_with_strict_expanded_list.hpp"
 //
 let AStarSEL be:
    let Less(lhs, rhs) be:
