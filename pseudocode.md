@@ -103,7 +103,8 @@ let PDSWithVList be:
                 if goal == state(curr)
                     final_path = path(curr), return
                 if length(path(curr)) < max_depth
-                    for lamda : make_child in function_dictionary.at(state(curr).find('0'))
+                    let func_list point to: function_dictionary[find position of '0' in state(curr)]) as referrence
+                    for lamda : make_child in funct_list
                         child = make_child(curr)
                         if visited_list doesn't contain state(child)
                             q.push(child)
@@ -132,7 +133,8 @@ let BestFSWithVList be:
             visited_list.insert(state(curr))
             if goal == state(curr)
                 final_path = path(curr), return
-            for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+            let func_list point to: function_dictionary[find position of '0' in state(curr)]) as referrence
+            for each make_child as lambda in func_list
                 child = make_child(curr)
                 if visited_list doesn't contain state(child) 
                     q.push(child)
@@ -159,7 +161,8 @@ let UniformCostSearch be:
                 final_path = path(curr), return
             if expanded_list doesn't contain state(curr)
                 expanded_list.insert(state(curr))
-                for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+                let func_list point to: function_dictionary[find position of '0' in state(curr)]) as referrence
+                for each make_child as lambda in func_list
                     child = make_child(curr)
                     if expanded_list doesn't contain state(child)
                         find it as iterator in q, such that: state(child) == state(node)
@@ -191,9 +194,12 @@ as class
             curr = pop(q)
             if state(curr) == goal
                 final_path = path(curr),return
-            for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+            let func_list point to: function_dictionary[find position of '0' in state(curr)]) as referrence
+            for each make_child as lambda in func_list
                 q.push(make_child(curr))
             max_q_length = max(max_q_length, size(q))
+    as method
+as class
  ```
   * `a_star_with_strict_expanded_list.hpp`
  ```f#
@@ -218,7 +224,8 @@ as class
                 final_path = path(curr), return
             if expanded_list doesn't contain state(curr)
                 expanded_list.insert(state(curr))
-                for each make_child as lambda in function_dictionary.at(state(curr).find('0'))
+                let func_list point to function_dictionary[find position of '0' in state(curr)]) as referrence
+                for each make_child as lambda in func_list
                     child = make_child(curr)
                     if expanded_list doesn't contain state(child)
                         find iter as iterator in q, such that: state(child) == state(dereference(iter))
@@ -226,5 +233,7 @@ as class
                             q.push(child)
                         else if less(child, dereference(iter))
                             swap(child, dereference(iter))
-            max_q_length = max(max_q_length, size(q))    
+            max_q_length = max(max_q_length, size(q))
+    as method
+as class
  ```
