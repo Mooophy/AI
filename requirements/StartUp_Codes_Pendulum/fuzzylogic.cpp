@@ -7,16 +7,13 @@
 
 void initFuzzyRules(fuzzy_system_rec *fl) {
 	
-   const int
-      no_of_x_rules = 25,
-      no_of_theta_rules = 25;
-   
+   const int no_of_x_rules = 25, no_of_theta_rules = 25;
    int i;
-	
 //---------------------------------------------------------------------------- 	
 //THETA vs. THETA_DOT	
 //   
-   for (i = 0;i < no_of_theta_rules;i++) {
+   for (i = 0;i < no_of_theta_rules;i++) 
+   {
        fl->rules[i].inp_index[0] = in_theta;
        fl->rules[i].inp_index[1] = in_theta_dot;
    }
@@ -30,8 +27,8 @@ void initFuzzyRules(fuzzy_system_rec *fl) {
 	
 //----------------------------------------------------------------------------   
 //X vs. X_DOT
-//
-   for (i = 0;i < no_of_x_rules;i++) {
+	for (i = 0;i < no_of_x_rules;i++) 
+	{
    	  fl->rules[i + no_of_theta_rules].inp_index[0] = in_x;
    	  fl->rules[i + no_of_theta_rules].inp_index[1] = in_x_dot;
 	}
