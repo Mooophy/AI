@@ -12,7 +12,6 @@
 #include <deque>
 #include <set>
 
-
 using namespace std;
 
 /////////////////////////////////////////////////////
@@ -35,11 +34,9 @@ enum {in_nl,in_ns,in_ze,in_ps, in_pl};
 //Fuzzy output terms
 enum {out_nvl,out_nl,out_nm, out_ns, out_ze,out_ps, out_pm,out_pl, out_pvl};
 
-
 typedef struct {
    trapz_type tp;
    float a,b,c,d,l_slope,r_slope;
-   
 }trapezoid;
 
 typedef struct {
@@ -74,8 +71,5 @@ float trapz (float x, trapezoid trz);
 float min_of (float values[],int no_of_inps);
 float fuzzy_system (float inputs[],fuzzy_system_rec fz);
 void free_fuzzy_rules (fuzzy_system_rec *fz);
-
-
-
 
 #endif
