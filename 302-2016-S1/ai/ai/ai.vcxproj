@@ -120,6 +120,8 @@
   <ItemGroup>
     <ClInclude Include="bfs.hpp" />
     <ClInclude Include="node.hpp" />
+    <ClInclude Include="pds.hpp" />
+    <ClInclude Include="search.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

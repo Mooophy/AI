@@ -24,6 +24,12 @@
     <ClInclude Include="bfs.hpp">
       <Filter>Header Files\lib</Filter>
     </ClInclude>
+    <ClInclude Include="pds.hpp">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="search.hpp">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
