@@ -37,7 +37,7 @@ namespace ai
 
 		auto is_valid_to_up() const -> bool { return index_of_0() > 2; }
 		auto is_valid_to_rt() const -> bool { return (index_of_0() % 3) != 2; }
-		auto is_valid_to_dw() const -> bool { return index_of_0() < 7; }
+		auto is_valid_to_dw() const -> bool { return index_of_0() < 6; }
 		auto is_valid_to_lt() const -> bool { return (index_of_0() % 3) != 0; }
 
 		auto up() const -> Node
