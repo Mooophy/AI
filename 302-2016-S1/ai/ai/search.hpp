@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
+#include "node.hpp"
 
 namespace ai 
 {
-    class search
+    class Search
     {
         virtual std::string get_final_path() const = 0;
         virtual std::size_t get_max_q_length() const = 0;

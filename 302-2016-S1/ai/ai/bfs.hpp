@@ -7,7 +7,7 @@
 
 namespace ai
 {
-    class BFS : search
+    class BFS : Search
     {
     public:
         std::string init, goal;
@@ -17,7 +17,6 @@ namespace ai
             goal{ g },
             visited_list{},
             final_path{},
-            is_found{ false },
             q{},
             max_q_lenth{ 0 }
         {
@@ -47,7 +46,6 @@ namespace ai
     private:
         std::unordered_set<std::string> visited_list;
         std::string final_path;
-        bool is_found;
         std::queue<Node> q;
         std::size_t max_q_lenth;
 
